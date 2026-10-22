@@ -1,0 +1,17 @@
+{
+  "ad": "CV ön eleme (YÜKSEK RİSKLİ — yalnızca öneri, karar insanın)",
+  "aciklama": "EU AI Act Ek III: istihdam. Model yalnızca sıralama önerir; her red kararı insan tarafından verilir ve gerekçelendirilir. Bu dosya 'hata maliyeti yüksekse ROI nasıl çöker' örneğidir.",
+  "gunluk_istek": 200,
+  "ay_gun": 22,
+  "girdi_token_ort": 3000,
+  "cikti_token_ort": 200,
+  "onbellek_orani": 0.40,
+  "model": "claude-opus-5.5",
+  "insan": {"dakika_per_istek_once": 8, "dakika_per_istek_sonra": 5, "saatlik_maliyet_usd": 30},
+  "hata_orani": 0.10,
+  "hata_maliyeti_usd": 500,
+  "kurulum_maliyeti_usd": 40000,
+  "aylik_platform_usd": 300,
+  "aylik_bakim_saat": 40,
+  "bakim_saatlik_usd": 45
+}

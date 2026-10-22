@@ -1,0 +1,11 @@
+{
+  "ad": "Ekip içi kodlama ajanı",
+  "aciklama": "Her ajan adımı aynı 40K token'lık repo bağlamını yeniden gönderir; önbellek oranı çok yüksek. Çıktı kısa (diff).",
+  "gunluk_istek": 2000,
+  "girdi_token_ort": 40000,
+  "cikti_token_ort": 600,
+  "onbellek_orani": 0.85,
+  "kolay_is_orani": 0.30,
+  "ay_gun": 22,
+  "insan_karsiligi": {"dakika_per_istek": 12, "saatlik_maliyet_usd": 35}
+}

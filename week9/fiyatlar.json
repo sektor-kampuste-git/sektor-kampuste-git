@@ -1,0 +1,25 @@
+{
+  "_not": "Liste fiyatları: 1M token başına USD. Kaynak: Hafta 1 slaytı (22 Eylül 2026 liste fiyatları). Fiyatlar aylık değişir; derste sağlayıcının fiyat sayfasından doğrulayın. 'varsayim' alanı dolu olan değerler slaytta yoktu, oranla tahmin edildi.",
+  "tarih": "2026-09-22",
+  "kaynaklar": [
+    "anthropic.com/pricing",
+    "openai.com/api/pricing",
+    "ai.google.dev/pricing",
+    "api-docs.deepseek.com/quick_start/pricing",
+    "artificialanalysis.ai (zeka / hız / görev başına maliyet)"
+  ],
+  "modeller": [
+    {"id": "claude-fable-5.1", "saglayici": "Anthropic", "kademe": "amiral", "girdi": 10.00, "cikti": 50.00, "onbellek_okuma": 0.25, "baglam_k": 1000, "not": "Mythos ile aynı ağırlıklar, farklı güvenlik katmanı"},
+    {"id": "claude-opus-5.5", "saglayici": "Anthropic", "kademe": "amiral", "girdi": 4.00, "cikti": 20.00, "onbellek_okuma": 0.40, "baglam_k": 1000, "varsayim": "onbellek_okuma = girdinin %10'u", "hizli_mod": {"girdi": 8.00, "cikti": 40.00}},
+    {"id": "claude-haiku-4.5", "saglayici": "Anthropic", "kademe": "ucuz", "girdi": 1.00, "cikti": 5.00, "onbellek_okuma": 0.10, "baglam_k": 200, "varsayim": "fiyat slaytta yoktu; Ekim 2025 liste fiyatı"},
+    {"id": "gpt-6-sol", "saglayici": "OpenAI", "kademe": "amiral", "girdi": 2.00, "cikti": 10.00, "onbellek_okuma": 0.20, "baglam_k": 1000, "not": "Sol/Terra/Luna yetenek kademeleri"},
+    {"id": "gpt-6-luna", "saglayici": "OpenAI", "kademe": "ucuz", "girdi": 0.10, "cikti": 0.50, "onbellek_okuma": 0.01, "baglam_k": 1000},
+    {"id": "gemini-3.6-flash", "saglayici": "Google", "kademe": "orta", "girdi": 1.50, "cikti": 7.50, "onbellek_okuma": 0.15, "baglam_k": 1000, "varsayim": "onbellek_okuma = girdinin %10'u"},
+    {"id": "gemini-3.5-flash-lite", "saglayici": "Google", "kademe": "ucuz", "girdi": 0.30, "cikti": 1.20, "onbellek_okuma": 0.03, "baglam_k": 1000, "varsayim": "cikti = girdinin 4 katı; ücretsiz katman mevcut"},
+    {"id": "grok-4.7", "saglayici": "xAI", "kademe": "amiral", "girdi": 2.00, "cikti": 6.00, "onbellek_okuma": 0.20, "baglam_k": 500, "varsayim": "onbellek_okuma = girdinin %10'u"},
+    {"id": "deepseek-v4-pro", "saglayici": "DeepSeek", "kademe": "orta", "girdi": 0.66, "cikti": 1.98, "onbellek_okuma": 0.07, "baglam_k": 1000, "not": "MIT lisanslı açık ağırlıklar; OpenAI uyumlu API"},
+    {"id": "deepseek-v4.1-flash", "saglayici": "DeepSeek", "kademe": "ucuz", "girdi": 0.15, "cikti": 0.60, "onbellek_okuma": 0.02, "baglam_k": 1000},
+    {"id": "ollama/qwen3.5:4b", "saglayici": "Yerel (Ollama)", "kademe": "yerel", "girdi": 0.0, "cikti": 0.0, "onbellek_okuma": 0.0, "baglam_k": 32, "not": "Token başına 0 USD; maliyet = elektrik + donanım + sizin zamanınız"},
+    {"id": "ollama/kumru-2b", "saglayici": "Yerel (Ollama)", "kademe": "yerel", "girdi": 0.0, "cikti": 0.0, "onbellek_okuma": 0.0, "baglam_k": 8, "not": "Türkçe üzerinde sıfırdan eğitildi (vngrs-ai)"}
+  ]
+}

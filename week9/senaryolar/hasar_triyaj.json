@@ -1,0 +1,17 @@
+{
+  "ad": "Sigorta hasar dosyası triyajı (Hafta 1 vakası)",
+  "aciklama": "Her dosyadan tipli şema çıkarılır ve kuyruğa yönlendirilir; son onay eksperde.",
+  "gunluk_istek": 1500,
+  "ay_gun": 22,
+  "girdi_token_ort": 6000,
+  "cikti_token_ort": 300,
+  "onbellek_orani": 0.30,
+  "model": "gpt-6-sol",
+  "insan": {"dakika_per_istek_once": 25, "dakika_per_istek_sonra": 6, "saatlik_maliyet_usd": 20},
+  "hata_orani": 0.05,
+  "hata_maliyeti_usd": 40,
+  "kurulum_maliyeti_usd": 25000,
+  "aylik_platform_usd": 400,
+  "aylik_bakim_saat": 30,
+  "bakim_saatlik_usd": 45
+}

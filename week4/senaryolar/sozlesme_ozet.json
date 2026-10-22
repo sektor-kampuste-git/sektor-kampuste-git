@@ -1,0 +1,11 @@
+{
+  "ad": "Hukuk departmanı sözleşme özetleme",
+  "aciklama": "Uzun Türkçe sözleşmeler (10-15 sayfa) özetlenir, risk maddeleri çıkarılır. Girdi uzun, tekrar eden kısım az.",
+  "gunluk_istek": 300,
+  "girdi_token_ort": 12000,
+  "cikti_token_ort": 800,
+  "onbellek_orani": 0.10,
+  "kolay_is_orani": 0.20,
+  "ay_gun": 22,
+  "insan_karsiligi": {"dakika_per_istek": 35, "saatlik_maliyet_usd": 40}
+}

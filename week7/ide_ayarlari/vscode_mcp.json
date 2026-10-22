@@ -1,0 +1,10 @@
+{
+  "_not": "VS Code: projenizde .vscode/mcp.json olarak kaydedin. Copilot Chat → Agent modu → araçlar listesinde 'kampus-destek' görünür. Yolları kendi makinenize göre düzenleyin.",
+  "servers": {
+    "kampus-destek": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["/TAM/YOL/sektor-kampuste-git/week7/mcp_sunucu.py"]
+    }
+  }
+}

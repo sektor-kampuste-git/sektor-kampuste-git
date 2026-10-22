@@ -1,0 +1,9 @@
+{
+  "_not": "Claude Desktop: Settings → Developer → Edit Config. macOS: ~/Library/Application Support/Claude/claude_desktop_config.json · Windows: %APPDATA%\\Claude\\claude_desktop_config.json. Sanal ortam kullanıyorsanız command'ı .venv içindeki python'a verin.",
+  "mcpServers": {
+    "kampus-destek": {
+      "command": "/TAM/YOL/.venv/bin/python",
+      "args": ["/TAM/YOL/sektor-kampuste-git/week7/mcp_sunucu.py"]
+    }
+  }
+}

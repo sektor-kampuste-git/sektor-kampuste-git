@@ -1,0 +1,56 @@
+# week8 · GitHub Actions şablonu — kendi reponuza .github/workflows/eval.yml olarak kopyalayın.
+# Secrets → Actions: LLM_BASE_URL, LLM_API_KEY, LLM_MODEL (asla dosyaya yazmayın).
+# Her push/PR'da 15 eval çalışır; 13'ün altı kırmızı. Prompt'u "iyileştirdim" demek yetmez, CI yeşil olmalı.
+name: LLM evalleri
+
+on:
+  push:
+    paths: ["promptlar/**", "asistan.py", "evaller.json", "eval_calistir.py"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      LLM_MODEL: ${{ secrets.LLM_MODEL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: 15 eval (eşik 13)
+        run: python eval_calistir.py --esik 13 --json > rapor.json; code=$?; python -c "import json;d=json.load(open('rapor.json'))['ozet'];print(f\"{d['gecen']}/{d['toplam']} geçti\")"; exit $code
+      - name: Raporu sakla
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-raporu
+          path: rapor.json
+
+  # İsteğe bağlı: promptfoo ile aynı vakalar, tarayıcıda karşılaştırma raporu
+  promptfoo:
+    runs-on: ubuntu-latest
+    if: false      # açmak için: true
+    env:
+      OPENAI_API_KEY: ${{ secrets.LLM_API_KEY }}
+      OPENAI_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+      LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      LLM_MODEL: ${{ secrets.LLM_MODEL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npx promptfoo@latest eval --no-cache --output promptfoo-rapor.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: promptfoo-raporu, path: promptfoo-rapor.json }

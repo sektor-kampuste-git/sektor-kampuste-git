@@ -1,0 +1,2 @@
+# portfolyo_kontrol.py yalnızca standart kütüphane kullanır (urllib). İsteğe bağlı: GITHUB_TOKEN ortam değişkeni (rate limit).
+python-dotenv>=1.0

@@ -1,0 +1,22 @@
+# week9 · n8n'i yerelde çalıştır:  docker compose up -d  →  http://localhost:5678  (ilk açılışta hesap oluşturun)
+# Durdur: docker compose down   · Veriler n8n_data hacminde kalır.
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - GENERIC_TIMEZONE=Europe/Istanbul
+      - N8N_SECURE_COOKIE=false
+      # LLM erişimi: .env'den; akışta {{$env.LLM_BASE_URL}} gibi okunur
+      - LLM_BASE_URL=${LLM_BASE_URL}
+      - LLM_API_KEY=${LLM_API_KEY}
+      - LLM_MODEL=${LLM_MODEL}
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+volumes:
+  n8n_data:

@@ -1,0 +1,57 @@
+{
+  "name": "Destek triyajı (week9)",
+  "nodes": [
+    {
+      "parameters": {"httpMethod": "POST", "path": "destek", "responseMode": "responseNode", "options": {}},
+      "id": "a1", "name": "Webhook: yeni talep", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [0, 0],
+      "webhookId": "destek-triyaj"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.LLM_BASE_URL.replace(/\\/$/, '') }}/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {"parameters": [
+          {"name": "Authorization", "value": "=Bearer {{ $env.LLM_API_KEY }}"},
+          {"name": "Content-Type", "value": "application/json"}
+        ]},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: $env.LLM_MODEL,\n  temperature: 0,\n  response_format: { type: 'json_object' },\n  messages: [\n    { role: 'system', content: 'Sen bir müşteri destek triyaj sistemisin. Gelen mesajı sınıfla ve YALNIZCA şu JSON ile cevap ver: {\"kategori\": \"siparis|kargo|iade|odeme|diger\", \"oncelik\": \"dusuk|orta|yuksek\", \"ozet\": \"tek cümle Türkçe\", \"insan_gerekli\": true/false}. Para talebi, tehdit, hukuki ifade varsa insan_gerekli=true ve oncelik=yuksek.' },\n    { role: 'user', content: $json.body.mesaj }\n  ]\n}) }}",
+        "options": {}
+      },
+      "id": "b2", "name": "LLM: sınıfla", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [260, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const ham = $input.first().json.choices[0].message.content;\nlet karar;\ntry { karar = JSON.parse(ham); } catch (e) { karar = { kategori: 'diger', oncelik: 'yuksek', ozet: 'JSON ayrıştırılamadı', insan_gerekli: true }; }\nreturn [{ json: { ...karar, mesaj: $('Webhook: yeni talep').first().json.body.mesaj, musteri: $('Webhook: yeni talep').first().json.body.musteri || 'anonim', zaman: new Date().toISOString() } }];"
+      },
+      "id": "c3", "name": "Kararı ayrıştır", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [520, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {"options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict"},
+          "conditions": [{"id": "k1", "leftValue": "={{ $json.insan_gerekli }}", "rightValue": true, "operator": {"type": "boolean", "operation": "true", "singleValue": true}}],
+          "combinator": "and"},
+        "options": {}
+      },
+      "id": "d4", "name": "İnsan gerekli mi?", "type": "n8n-nodes-base.if", "typeVersion": 2, "position": [780, 0]
+    },
+    {
+      "parameters": {"respondWith": "json", "responseBody": "={{ JSON.stringify({ durum: 'insana_yonlendirildi', kuyruk: 'temsilci-' + $json.kategori, ...$json }) }}", "options": {}},
+      "id": "e5", "name": "Yanıt: insan kuyruğu", "type": "n8n-nodes-base.respondToWebhook", "typeVersion": 1.1, "position": [1040, -120]
+    },
+    {
+      "parameters": {"respondWith": "json", "responseBody": "={{ JSON.stringify({ durum: 'otomatik', ...$json }) }}", "options": {}},
+      "id": "f6", "name": "Yanıt: otomatik", "type": "n8n-nodes-base.respondToWebhook", "typeVersion": 1.1, "position": [1040, 120]
+    }
+  ],
+  "connections": {
+    "Webhook: yeni talep": {"main": [[{"node": "LLM: sınıfla", "type": "main", "index": 0}]]},
+    "LLM: sınıfla": {"main": [[{"node": "Kararı ayrıştır", "type": "main", "index": 0}]]},
+    "Kararı ayrıştır": {"main": [[{"node": "İnsan gerekli mi?", "type": "main", "index": 0}]]},
+    "İnsan gerekli mi?": {"main": [[{"node": "Yanıt: insan kuyruğu", "type": "main", "index": 0}], [{"node": "Yanıt: otomatik", "type": "main", "index": 0}]]}
+  },
+  "settings": {"executionOrder": "v1"},
+  "meta": {"not": "Bulut Bilişim ve Yapay Zeka Teknolojileri · week9. Import: n8n → Workflows → Import from file. Ortam değişkenleri docker-compose.yml'den gelir."}
+}

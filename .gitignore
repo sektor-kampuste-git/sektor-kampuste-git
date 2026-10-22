@@ -1,0 +1,36 @@
+# Gizli bilgiler: ASLA commit etmeyin
+.env
+.env.*
+!.env.example
+*.key
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Node (promptfoo, n8n)
+node_modules/
+.promptfoo/
+
+# Lab çıktıları
+**/izler/*.jsonl
+rapor_kirmizi_takim.json
+qdrant_data/
+*.pkl
+*.sqlite
+rapor_*.md
+rapor_*.json
+
+# İşletim sistemi / editör
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/settings.json

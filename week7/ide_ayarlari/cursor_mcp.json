@@ -1,0 +1,9 @@
+{
+  "_not": "Cursor: projede .cursor/mcp.json ya da global ~/.cursor/mcp.json. Settings → MCP'de sunucu yeşil görünmeli.",
+  "mcpServers": {
+    "kampus-destek": {
+      "command": "python",
+      "args": ["/TAM/YOL/sektor-kampuste-git/week7/mcp_sunucu.py"]
+    }
+  }
+}

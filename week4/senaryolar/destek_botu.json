@@ -1,0 +1,11 @@
+{
+  "ad": "E-ticaret müşteri destek asistanı",
+  "aciklama": "Sipariş, kargo ve iade sorularını yanıtlayan RAG tabanlı sohbet botu. Sistem promptu + politika belgeleri her çağrıda aynı; soru kısa.",
+  "gunluk_istek": 20000,
+  "girdi_token_ort": 1800,
+  "cikti_token_ort": 250,
+  "onbellek_orani": 0.60,
+  "kolay_is_orani": 0.70,
+  "ay_gun": 30,
+  "insan_karsiligi": {"dakika_per_istek": 4, "saatlik_maliyet_usd": 9}
+}

@@ -1,0 +1,11 @@
+{
+  "ad": "Sigorta hasar dosyası triyajı (Hafta 1 vakası)",
+  "aciklama": "PDF + fotoğraf açıklamaları + serbest metinden tipli şema çıkarılır (hasar türü, tutar, eksik belge). Son onay eksperde.",
+  "gunluk_istek": 1500,
+  "girdi_token_ort": 6000,
+  "cikti_token_ort": 300,
+  "onbellek_orani": 0.30,
+  "kolay_is_orani": 0.50,
+  "ay_gun": 22,
+  "insan_karsiligi": {"dakika_per_istek": 25, "saatlik_maliyet_usd": 20}
+}

@@ -1,0 +1,17 @@
+{
+  "ad": "E-ticaret destek asistanı (yanıt taslağı + insan onayı)",
+  "aciklama": "Asistan yanıt taslağı üretir, temsilci onaylar/düzenler. Para etkisi olan işlem yapmaz.",
+  "gunluk_istek": 20000,
+  "ay_gun": 30,
+  "girdi_token_ort": 1800,
+  "cikti_token_ort": 250,
+  "onbellek_orani": 0.60,
+  "model": "gpt-6-luna",
+  "insan": {"dakika_per_istek_once": 4, "dakika_per_istek_sonra": 1.5, "saatlik_maliyet_usd": 9},
+  "hata_orani": 0.08,
+  "hata_maliyeti_usd": 3,
+  "kurulum_maliyeti_usd": 15000,
+  "aylik_platform_usd": 250,
+  "aylik_bakim_saat": 20,
+  "bakim_saatlik_usd": 45
+}

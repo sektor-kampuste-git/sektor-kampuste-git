@@ -1,0 +1,15 @@
+[
+  {"soru": "5 yıldan az kıdemi olan bir çalışan yılda kaç gün yıllık izin kullanır?", "gercek_cevap": "14 iş günü.", "kaynak": "01_izin_politikasi.md"},
+  {"soru": "Kullanılmayan yıllık izin bir sonraki yıla devreder mi, devrederse ne zamana kadar kullanılmalı?", "gercek_cevap": "En fazla 10 iş günü devreder ve takip eden yılın 30 Haziran tarihine kadar kullanılmalıdır.", "kaynak": "01_izin_politikasi.md"},
+  {"soru": "Babalık izni kaç gündür ve ne zaman kullanılır?", "gercek_cevap": "10 iş günüdür; doğumu izleyen 30 gün içinde kullanılır.", "kaynak": "01_izin_politikasi.md"},
+  {"soru": "Haftada en fazla kaç gün uzaktan çalışılabilir ve çekirdek saatler nedir?", "gercek_cevap": "Haftada en fazla 3 gün; çekirdek saatler 10:00-16:00.", "kaynak": "02_uzaktan_calisma.md"},
+  {"soru": "Yurt dışı seyahatte günlük harcırah ne kadar ve fiş gerekir mi?", "gercek_cevap": "Günlük 80 EUR; fiş gerekmez, seyahat dönüşü bordroya eklenir.", "kaynak": "03_seyahat_ve_masraf.md"},
+  {"soru": "Masraflar seyahat dönüşünden sonra en geç kaç gün içinde bildirilmeli?", "gercek_cevap": "En geç 15 gün içinde; 15 günü aşan bildirimler ödenmez.", "kaynak": "03_seyahat_ve_masraf.md"},
+  {"soru": "Parola en az kaç karakter olmalı ve ne sıklıkla değiştirilir?", "gercek_cevap": "En az 14 karakter; 90 günde bir değiştirilir.", "kaynak": "04_bilgi_guvenligi.md"},
+  {"soru": "Kafede çalışırken VPN kullanmak zorunlu mu?", "gercek_cevap": "Evet, kafe, otel ve havalimanı gibi halka açık ağlarda şirket VPN'i zorunludur.", "kaynak": "04_bilgi_guvenligi.md"},
+  {"soru": "Oryantasyon programı kaç gün sürer ve buddy ne kadar süre eşlik eder?", "gercek_cevap": "5 iş günü sürer; buddy ilk 3 ay boyunca haftada en az bir kez görüşür.", "kaynak": "05_ise_alim_ve_oryantasyon.md"},
+  {"soru": "Yıllık kişisel eğitim bütçesi ne kadar ve devreder mi?", "gercek_cevap": "20.000 TL; kullanılmayan bütçe devretmez.", "kaynak": "06_egitim_ve_gelisim.md"},
+  {"soru": "Laptopum açılmıyor, BT ne kadar sürede çözer?", "gercek_cevap": "Kritik öncelik: 1 saat içinde yanıt, 4 saat içinde çözüm; aşacaksa yedek laptop verilir.", "kaynak": "07_ekipman_ve_bt_destek.md"},
+  {"soru": "Bir tedarikçiden alınabilecek hediyenin üst limiti nedir?", "gercek_cevap": "1.500 TL; 500 TL üzeri hediyeler 5 iş günü içinde uyum portalına bildirilir.", "kaynak": "08_etik_ve_uyum.md"},
+  {"soru": "Şirketin geçen yılki cirosu ne kadardı?", "gercek_cevap": "Bu bilgi el kitabında yok.", "kaynak": null}
+]
