@@ -47,7 +47,7 @@ python week1/hello.py
 2. **Her hafta açılacak iki konsol (4 dk).** ai.azure.com'da bir modeli 30 saniyede deploy edin (endpoint + anahtar); aistudio.google.com'da 30 saniyede ücretsiz Gemini anahtarı oluşturun. Aynı OpenAI uyumlu istemci ikisiyle de konuşur.
 3. **artificialanalysis.ai (3 dk).** Zeka / hız / görev başına maliyet grafiklerini açın, sıralamayı maliyete göre değiştirin. Alışkanlık: modeli basın bülteninden değil bağımsız sıralamadan seçin, bir ay sonra tekrar bakın.
 
-> **Ağ çökerse:** `python araclar/sahte_llm_sunucu.py` + `.env`'de (d) bloğu; tablo sahte yanıtlarla da çıkar. Beş model demosunun ekran görüntüleri Drive'daki `build/demo-w1/` klasöründe.
+> **Ağ çökerse:** `python araclar/sahte_llm_sunucu.py` + `.env`'de (d) bloğu; tablo sahte yanıtlarla da çıkar. Önceden kaydedilmiş bir çalıştırmanın ekran görüntüsünü de yanınızda bulundurun (`hoca/ders_oncesi_kontrol.md`).
 
 ## Lab (öğrenci · 20 dk)
 

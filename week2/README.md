@@ -39,7 +39,7 @@ Kurulum: `pip install -r week2/requirements.txt`. `.env` Hafta 1'deki gibi (`LLM
    python week2/temperature.py
    ```
 
-> **Ağ çökerse:** `python araclar/sahte_llm_sunucu.py` + `.env`'de (d) bloğu ile `temperature.py` ve `tokens.py` çalışır (tiktoken çevrimdışıdır; HF tokenizer'ları ilk indirmeden sonra önbellekten gelir). Ekran görüntüleri Drive'daki `build/assets/shots/` içinde.
+> **Ağ çökerse:** `python araclar/sahte_llm_sunucu.py` + `.env`'de (d) bloğu ile `temperature.py` çalışır; `tokens.py` ağ istemez ama tiktoken sözlüğü ve HF tokenizer dosyaları **ilk** çalıştırmada iner (dersten önce bir kez çalıştırın, sonrası önbellekten). Transformer Explainer bir kez yüklenince çevrimdışı da çalışır; Tiktokenizer için ekran görüntüsü alın.
 
 ## Lab (öğrenci · 20 dk)
 

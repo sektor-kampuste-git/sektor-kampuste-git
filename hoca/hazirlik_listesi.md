@@ -14,6 +14,7 @@
 - [ ] **Kendi hesaplarınız** (§3): Google AI Studio anahtarı, Groq, OpenRouter (yedek sağlayıcılar), Langfuse, Streamlit Community Cloud, Azure aboneliği (Container Apps demosu), n8n (Docker), Copilot Studio tenant kontrolü.
 - [ ] **Microsoft Learn for Educators:** bölümü kaydettirin → AI-901 / AZ-900 sınav kuponları (Hafta 1 ve 10 slaytlarında söz ediliyor).
 - [ ] **Eğitim laptopu:** `ollama pull qwen3.5:4b`, `ollama pull bge-m3`, `ollama pull vngrs-ai/Kumru-2B`; `python -m venv .venv` + her haftanın `requirements.txt`; Node 18+ (`npx promptfoo`), Docker (n8n, Qdrant), Azure CLI (`az login`).
+- [ ] **Demo yedekleri yok:** slaytlar `build/demo-wN/` ekran görüntülerine ve kayıtlı çalıştırmalara gönderme yapıyor ama Drive'da yoklar (`HANDOFF.md`: "None are created yet"). Her hafta provada (`ders_oncesi_kontrol.md`) gerçek modelle aldığınız çıktıların ekran görüntüsünü bir klasöre koyun; sahte sunucu akışı kurtarır, sayıları kurtarmaz.
 - [ ] **Slayt lab sayfaları:** her TR deste lab slaytında `github.com/<course-org>/ccai-2026/tree/main/labs/weekNN` yazıyor; §5'teki tabloya göre repo yolu ve dosya adlarını düzeltin (deste başına 1-2 slayt).
 - [ ] **Drive'daki `sinavlar/`, `ogrenciler/`, `Değerlendirilecek_Projeler/` klasörleri repoya girmedi** ve girmemeli; `bulut-bilisim-yz-katilimcilar.csv` öğrenci verisidir.
 

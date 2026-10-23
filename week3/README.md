@@ -43,7 +43,7 @@ Kurulum: `pip install -r week3/requirements.txt`. `.env` ortak (`LLM_BASE_URL` /
 3. **Bozalım (4 dk).** Bir parçanın tarihini gelecek haftaya çekin ya da `not_future` doğrulayıcısına bakın: Pydantic reddeder, Instructor hata metnini yeniden deneme prompt'una koyar, ikinci cevap tam o alanı düzeltir. 20. parça: şema biçimi korur ama başlığa `HACKED` yazılmasını yalnızca sizin doğrulayıcınız yakalar (lab alıştırması).
 4. **Mode.JSON vs Mode.TOOLS (2 dk).** `instructor.Mode.JSON` ücretsiz sağlayıcılarda en taşınabilir olanı; Gemini ve Foundry'de `Mode.TOOLS` deneyip yeniden deneme sayısını karşılaştırın.
 
-> **Ağ çökerse:** sahte sunucu `response_format` görünce şemaya uygun örnek JSON döndürür; akış aynen çalışır, değerler anlamsızdır. Terminal kaydı Drive'daki `build/demo-w3/` içinde.
+> **Ağ çökerse:** sahte sunucu `response_format` görünce (Instructor'ın `Mode.JSON`'u dahil) şemaya uygun örnek JSON döndürür; akış aynen çalışır, değerler anlamsızdır. Gerçek modelle alınmış bir terminal çıktısının ekran görüntüsünü yanınızda bulundurun.
 
 ## Lab (öğrenci · 20 dk)
 
