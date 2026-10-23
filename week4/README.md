@@ -1,6 +1,6 @@
 # Hafta 4 · Yapay zeka için bulut: IaaS'tan "hizmet olarak model"e
 
-> **Lab:** Foundry endpoint'i · maliyet tablosu · Azure'a deploy
+> **Lab:** API'den model kiralamak (OpenRouter) · maliyet tablosu · Azure'a deploy
 > **Bu haftanın sorusu:** Bir modeli *nereden* kiralarsınız, size *kaça* gelir ve ürününüzü *nerede* çalıştırırsınız?
 
 İlk üç hafta modelin nasıl çalıştığını ve onunla nasıl konuşulduğunu gördük. Bu hafta modeli çalıştırdığınız **bulut katmanını** anlıyoruz: sanal makineden "hizmet olarak model"e (MaaS) uzanan merdiven, token ekonomisi ve bir Türkçe özetleyiciyi gerçek bir URL'de yayınlamak.
@@ -9,7 +9,7 @@
 
 | Süre | Bölüm |
 |---|---|
-| 35 dk | Teori: bulut katmanları, Foundry/Bedrock/Vertex, token ekonomisi, dört fiyat kaldıracı |
+| 35 dk | Teori: bulut katmanları, Foundry/Bedrock/Vertex ve OpenRouter gibi model yönlendiricileri, token ekonomisi, dört fiyat kaldıracı |
 | 15 dk | **Canlı demo** (aşağıda) |
 | 20 dk | **Lab** (aşağıda) |
 | 10 dk | Quiz + gelecek hafta (RAG, vize) |
@@ -21,7 +21,9 @@
 | **IaaS** | İşletim sistemi, yamalar, ölçekleme, GPU sürücüsü | Virtual Machines (GPU'lu NC/ND serisi) | Açık ağırlıklı model kendi GPU'nuzda çalışacak, veri dışarı çıkmayacak |
 | **CaaS / PaaS** | Yalnızca kodunuz ve konteyneriniz | Container Apps, App Service | Uygulamanız (API, Streamlit) bulutta çalışacak; sunucu yönetmek istemiyorsunuz |
 | **FaaS** | Tek fonksiyon, olay tetikler | Azure Functions | Dosya gelince / saatte bir çalışan küçük işler |
-| **MaaS** (hizmet olarak model) | Hiçbir altyapı; token başına ödersiniz | **Azure AI Foundry**, AWS Bedrock, Google Vertex, OpenAI/Anthropic API | Öncü modele ihtiyaç var, altyapı istemiyorsunuz |
+| **MaaS** (hizmet olarak model) | Hiçbir altyapı; token başına ödersiniz | **Azure AI Foundry**, AWS Bedrock, Google Vertex, OpenAI/Anthropic API; **OpenRouter** (birçok sağlayıcının önünde tek API) | Öncü modele ihtiyaç var, altyapı istemiyorsunuz |
+
+> **Bu derste model erişimi:** hoca her öğrenciye harcama limitli bir **OpenRouter** anahtarı verir. OpenRouter bir *yönlendirici*dir: tek endpoint ve tek anahtarla OpenAI, Anthropic, DeepSeek, Qwen modellerine gider, faturayı tek yerde keser. Foundry ise aynı işi kendi Azure aboneliğinizin içinde yapar (veri yerleşimi, kurumsal sözleşme, Azure güvenlik/ağ kontrolleri). Kod ikisinde de aynıdır; değişen yalnızca `.env`'deki üç satırdır.
 
 Hafta 1'deki para akışı: *Çipler → Bulut → Model laboratuvarları → Platformlar (Foundry) → Sizin uygulamanız.* Bu hafta **platform** ve **uygulama** kutularını kiralıyoruz.
 
@@ -29,7 +31,7 @@ Hafta 1'deki para akışı: *Çipler → Bulut → Model laboratuvarları → Pl
 
 | Dosya | Ne işe yarar |
 |---|---|
-| `foundry_test.py` | Aynı Türkçe prompt'u birden çok model/arka uca gönderir; token, gecikme, maliyet tablosu |
+| `foundry_test.py` | Aynı Türkçe prompt'u birden çok model/arka uca gönderir (OpenRouter, Foundry, Gemini, Ollama); token, gecikme, maliyet tablosu |
 | `maliyet_hesapla.py` | Bir iş yükü senaryosu için aylık fatura; önbellek, kademe ve hızlı mod kaldıraçlarının etkisi |
 | `fiyatlar.json` | Tarihli liste fiyatları (1M token başına USD). **Dersten önce güncelleyin.** |
 | `senaryolar/*.json` | Dört gerçekçi iş yükü: destek botu, sözleşme özeti, kodlama ajanı, hasar triyajı |
@@ -46,9 +48,9 @@ cp .env.example .env                                   # sonra .env içine anaht
 ## Canlı demo (hoca · 15 dk)
 
 1. **Merdiveni portalda göster (3 dk).** Azure Portal'da bir VM fiyatı (GPU'lu), bir Container Apps ortamı ve Foundry'yi yan yana aç. Soru: "Qwen'i kendimiz mi çalıştıralım, Foundry'den mi kiralayalım?" Veri nerede durmalı, kim yamalar, kaça gelir.
-2. **Foundry'de 30 saniyede deploy (3 dk).** ai.azure.com → Model catalog → bir model seç → Deploy. *Endpoint* ve *Key*'i kopyala, `.env`'e yaz. Vurgu: deployment adı = `LLM_MODEL`. Aynı istemci koduyla konuşuyoruz:
+2. **Tek API, birçok model (3 dk).** openrouter.ai → Models sayfasında bir modelin sağlayıcılarını ve fiyatını göster; sonra Activity sayfasında öğrenci anahtarlarının harcamasını (kimse limitini aşamaz). İsteğe bağlı: ai.azure.com'da Foundry *Model catalog → Deploy* akışını göster ("aynı şeyi kendi aboneliğimizde yapsaydık"). Aynı istemci koduyla konuşuyoruz:
    ```bash
-   python week4/foundry_test.py --model gpt-6-luna --model deepseek-v4.1-flash --ollama qwen3.5:4b
+   python week4/foundry_test.py --model openai/gpt-6-luna --model deepseek/deepseek-v4.1-flash --ollama qwen3.5:4b
    ```
    Tabloyu oku: en ucuz model en kötüsü değil; yerel model $0 ama yavaş. Metinde olmayan bir madde uyduran var mı?
 3. **Faturayı hesapla (5 dk).**
@@ -63,16 +65,16 @@ cp .env.example .env                                   # sonra .env içine anaht
 
 ## Lab (öğrenci · 20 dk)
 
-**Hedef:** Foundry'den bir model kiralamak, faturasını hesaplamak ve özetleyiciyi bir URL'de yayınlamak.
+**Hedef:** API'den bir model kiralamak, faturasını hesaplamak ve özetleyiciyi bir URL'de yayınlamak.
 
-1. **Endpoint'i bağla (4 dk).** Hocanın paylaştığı Foundry endpoint ve anahtarını `.env`'e yaz (`LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`). Doğrula:
+1. **Endpoint'i bağla (4 dk).** Hocanın LMS'ten sana özel gönderdiği OpenRouter anahtarını `.env`'e yaz: `.env.example`'daki (b) bloğu (`LLM_BASE_URL=https://openrouter.ai/api/v1`, `LLM_MODEL=openai/gpt-6-luna`). Doğrula:
    ```bash
    python week4/foundry_test.py
    ```
-   Foundry erişimin yoksa Gemini anahtarınla (Hafta 1) aynı komutu çalıştır; `.env.example`'daki (a) bloğu.
-2. **Üç model karşılaştır (4 dk).** Hocanın endpoint'inde en az iki deployment + yerel modelin:
+   Anahtarın henüz yoksa Gemini anahtarınla (Hafta 1) aynı komutu çalıştır; `.env.example`'daki (a) bloğu.
+2. **Üç model karşılaştır (4 dk).** OpenRouter'da en az iki model + yerel modelin:
    ```bash
-   python week4/foundry_test.py --model <deployment1> --model <deployment2> --ollama qwen3.5:4b
+   python week4/foundry_test.py --model openai/gpt-6-luna --model deepseek/deepseek-v4.1-flash --ollama qwen3.5:4b
    ```
    Tabloyu kaydet. Hangisi en ucuz, hangisi en hızlı, hangisi uydurdu?
 3. **Kendi senaryonun faturası (5 dk).** `senaryolar/destek_botu.json` dosyasını kopyala, sayıları **kendi proje fikrine** göre değiştir (günlük istek, token uzunlukları, önbellek oranı). Çalıştır:
@@ -99,9 +101,11 @@ cp .env.example .env                                   # sonra .env içine anaht
 
 | Belirti | Sebep / çözüm |
 |---|---|
-| `401 Unauthorized` | Anahtar yanlış ya da farklı kaynağın anahtarı. Foundry'de *Keys and Endpoint* bölümünden tekrar kopyala. |
-| `404 model not found` | `LLM_MODEL` deployment adı değil model adı yazılmış. Foundry → Deployments listesindeki adı kullan. |
-| Base URL `/openai/v1/` ile bitmiyor | Foundry'nin OpenAI uyumlu endpoint'i bu yolla biter; `api-version` gerekmez. |
+| `401 Unauthorized` | Anahtar eksik kopyalanmış (`sk-or-v1-` ile başlar) ya da başka sağlayıcının anahtarı `LLM_BASE_URL`'le eşleşmiyor. |
+| `404 model not found` | OpenRouter'da model adı önekli: `openai/gpt-6-luna`, `deepseek/deepseek-v4.1-flash`. Gemini/Ollama'da önek yok. |
+| `402` / `insufficient credits` | Anahtarının harcama limiti doldu (lab'lar için fazlasıyla yeter; döngüde kalmış bir betik olabilir). Hocaya yaz, bu arada Gemini'ye geç. |
+| `429 rate limit` | Kısa bekleyip tekrar dene; `:free` modellerde günlük istek sınırı var, ücretli modellerde yok. |
+| Foundry kullanıyorsan base URL `/openai/v1/` ile bitmiyor | Foundry'nin OpenAI uyumlu endpoint'i bu yolla biter; `api-version` gerekmez; model adı = deployment adı. |
 | `Connection refused :11434` | Ollama çalışmıyor: `ollama serve` sonra `ollama pull qwen3.5:4b`. |
 | `az containerapp up` çok uzun sürüyor | İlk seferde ACR + ortam kurulur (3-5 dk). İkinci dağıtım 1 dk. |
 | Container Apps'te 502 | `az containerapp logs show -n APP -g RG --follow`; büyük ihtimalle env var eksik → `/saglik` endpoint'ine bak. |
@@ -118,6 +122,7 @@ cp .env.example .env                                   # sonra .env içine anaht
 ## Kaynaklar
 
 - Microsoft Learn: *Azure Fundamentals — Describe cloud service types* · *Deploy to Azure Container Apps from source* · *Azure AI Foundry — Deploy models*
+- OpenRouter: openrouter.ai/docs (OpenAI uyumlu API, model listesi ve fiyatlar), openrouter.ai/models
 - Hafta 1 slaytı: fiyat kaldıraçları, para akışı
 - epoch.ai → *LLM inference price trends* (fiyat düşüşü eğrisi)
 - artificialanalysis.ai → zeka / hız / görev başına maliyet grafikleri

@@ -11,7 +11,7 @@
 | 1 | 2026'da yapay zeka: manzara, ekonomi, araç çantası | Hesaplar + `hello.py` (bulut vs yerel model) | [`week1/`](week1/) |
 | 2 | LLM'ler nasıl çalışır: token, bağlam, dikkat, gömme | Türkçe vs İngilizce token, temperature, yerel model yarışı | [`week2/`](week2/) |
 | 3 | Prompt yazımı ve tip güvenli çıktılar; GitHub org'u | Instructor + Pydantic ile veri çıkarma; kendi reponuz | [`week3/`](week3/) |
-| 4 | **Yapay zeka için bulut: IaaS'tan hizmet olarak modele** | Foundry endpoint'i · maliyet tablosu · Azure Container Apps'e deploy | [`week4/`](week4/) |
+| 4 | **Yapay zeka için bulut: IaaS'tan hizmet olarak modele** | API'den model kiralama (OpenRouter) · maliyet tablosu · Azure Container Apps'e deploy | [`week4/`](week4/) |
 | 5 | **RAG ve vektör veritabanları** *(vize haftası)* | Türkçe derlem üzerinde hibrit RAG + RAGAS tarzı değerlendirme | [`week5/`](week5/) |
 | 6 | **Vibe coding I: ajan tabanlı kodlama araçları** | 40 dk: spec'ten testli uygulamaya ve yayına | [`week6/`](week6/) |
 | 7 | **Ajanlar, MCP ve A2A** | Bütçeli ajan döngüsü + kendi MCP sunucunuz | [`week7/`](week7/) |
@@ -43,10 +43,10 @@ Tüm lab kodu üç ortam değişkeni okur: `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_M
 
 | Arka uç | Nereden | Ücret |
 |---|---|---|
-| **Azure AI Foundry** | Hocanın paylaştığı endpoint ve anahtar (Claude, GPT, DeepSeek, Qwen tek katalogda) | Ders karşılar |
+| **OpenRouter** | Hocanın size özel verdiği, harcama limitli anahtar; GPT, Claude, DeepSeek, Qwen tek endpoint'te (`.env.example` (b) bloğu) | Ders karşılar |
 | **Google AI Studio (Gemini)** | Kendi ücretsiz anahtarınız — aistudio.google.com | Ücretsiz katman |
 | **Ollama** | Kendi laptopunuz — `ollama pull qwen3.5:4b` | $0, çevrimdışı |
-| Groq · OpenRouter · DeepSeek | Ücretsiz katmanlar | `.env.example`'da |
+| Groq · OpenRouter `:free` · DeepSeek | Kendi ücretsiz hesaplarınız | `.env.example`'da |
 | **Sahte sunucu** | `python araclar/sahte_llm_sunucu.py` | Ağ yokken; gerçek model değildir |
 
 Ayrıntı ve hazır bloklar: [`.env.example`](.env.example). Hafta 5 gömme modeli için `EMBED_MODEL` (Gemini: `gemini-embedding-001`, Ollama: `bge-m3`).
@@ -79,7 +79,8 @@ Her haftanın kodu **kendi başına çalışır** (haftalar arası import yok); 
 |---|---|
 | `LLM_BASE_URL ve LLM_API_KEY tanımlı değil` | `.env` repo kökünde mi? `cp .env.example .env` sonra düzenleyin |
 | `401` | Anahtar yanlış/eksik ya da başka kaynağın anahtarı |
-| `404 model` | `LLM_MODEL` Foundry'de **deployment adı** olmalı |
+| `404 model` | OpenRouter'da model adı `sağlayıcı/model` biçiminde (`openai/gpt-6-luna`); Gemini/Ollama'da önek yok |
+| `402` / `insufficient credits` | OpenRouter anahtarınızın limiti doldu; hocaya yazın, bu arada Gemini anahtarınıza geçin |
 | Ağ yok | `python araclar/sahte_llm_sunucu.py` + `.env`'de (d) bloğu |
 | Windows'ta `source` çalışmıyor | `.venv\Scripts\activate`; `export` yerine `set` ya da `.env` dosyası (otomatik okunur) |
 

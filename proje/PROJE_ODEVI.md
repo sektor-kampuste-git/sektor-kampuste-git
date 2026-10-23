@@ -1,6 +1,6 @@
 # Final projesi — Bulut Bilişim ve Yapay Zeka Teknolojileri, Güz 2026
 
-> **Ağırlık:** ders notunun **%30**'u (vize %30, final sınavı %40). Hafta 4'te duyurulur; takımlar ve fikirler Hafta 10'daki 3 dakikalık sunumlarla, kapsam Hafta 11 atölyesinde kesinleşir; sunumlar Hafta 14'te; son teslim ders sayfasındaki tarihe kadardır (tarih sınıf kanalında duyurulur).
+> **Ağırlık:** ders notunun **%30**'u (vize %30, final sınavı %40). Hafta 4'te duyurulur; takımlar ve fikirler Hafta 10'daki 3 dakikalık sunumlarla, kapsam Hafta 11 atölyesinde kesinleşir; sunumlar Hafta 13'te (Hafta 14 resmî tatile denk geldiği için bir hafta öne alındı); son teslim ders sayfasındaki tarihe kadardır (tarih sınıf kanalında duyurulur).
 > Bu belge projenin **tek kaynağıdır**; `week11/degerlendirme_rubrigi.md` buradaki rubriğin kopyasıdır, `week11/proje_teslim_sablonu.md` teslim dosyasının şablonudur.
 
 ## 1. Amaç
@@ -28,7 +28,7 @@ Her satır bir haftaya karşılık gelir ve `TESLIM.md`'de kanıt dosyasıyla g�
 | 4 | **İzlenmiş ve değerlendirilmiş**: en az **15 vakalık eval seti** (gerçek/anonim veriden; en az 5'i zorlayıcı/adversarial), otomatik koşucu, sonuçlar sayı ve tarihle; **red team** (≥8 saldırı); izler (trace) görünür | 8 | `evaller.json` + koşucu çıktısı, Langfuse projesi ya da yerel iz, promptfoo / RAGAS raporu, red team tablosu; CI'da çalışan eval ve yeşil GitHub Actions rozeti (tam puan için) |
 | 5 | **Maliyet ölçümü**: istek başına ve aylık tahmin; model kademesi gerekçeli; önbellek / kademe kaldıraçları değerlendirilmiş | 4 | `maliyet_hesapla.py` / `roi_hesapla.py` çıktısı, README maliyet tablosu |
 | 6 | **Güvenlik ve yönetişim bölümü**: EU AI Act risk seviyesi (Omnibus sonrası tarihlerle), KVKK kontrolü, injection savunmaları ve yetki kısıtı, insan onayı noktası, yapay zeka kullanım beyanı | 8 / 9 | README bölümü + `docs/kullanim_senaryosu.md` + `docs/model_karti.md` |
-| 7 | **Sağlayıcıdan bağımsız kod**: `base_url` + `api_key` + `model` ortam değişkenlerinden; en az iki sağlayıcıda çalışır (hocanın Foundry endpoint'i + Gemini ücretsiz katmanı / Groq / OpenRouter / Ollama) | hepsi | `.env.example`, README |
+| 7 | **Sağlayıcıdan bağımsız kod**: `base_url` + `api_key` + `model` ortam değişkenlerinden; en az iki sağlayıcıda çalışır (hocanın OpenRouter anahtarı + Gemini ücretsiz katmanı / Groq / Ollama) | hepsi | `.env.example`, README |
 | 8 | **README "AI kullanımı" bölümü** (ders kuralı): hangi araçlar, hangi işler; ajanın en az bir hatası ve sizin düzeltmeniz | 6 | README |
 
 ## 4. Teslim edilecekler
@@ -39,7 +39,7 @@ Her satır bir haftaya karşılık gelir ve `TESLIM.md`'de kanıt dosyasıyla g�
 4. **Demo videosu (≤ 2 dk)**: problem 15 sn → demo 45 sn → eval + maliyet 20 sn → sınırlar 10 sn (YouTube unlisted / Drive). Ağ yoksa sunum bu videoyla yapılır.
 5. **Kullanım senaryosu özeti** `docs/kullanim_senaryosu.md` ([`week9/kullanim_senaryosu_sablonu.md`](../week9/kullanim_senaryosu_sablonu.md), Hafta 9 lab'ında başladığınız belge).
 6. **Model kartı** `docs/model_karti.md` ([`week9/model_karti_sablonu.md`](../week9/model_karti_sablonu.md)).
-7. **3 dakikalık sunum** Hafta 14'te ([`week10/sunum_sablonu.md`](../week10/sunum_sablonu.md), [`week11/sunum_gunu_akisi.md`](../week11/sunum_gunu_akisi.md)); uzaktan katılan takım 3 dakikalık video gönderir.
+7. **3 dakikalık sunum** Hafta 13'te ([`week10/sunum_sablonu.md`](../week10/sunum_sablonu.md), [`week11/sunum_gunu_akisi.md`](../week11/sunum_gunu_akisi.md)); uzaktan katılan takım 3 dakikalık video gönderir.
 
 ## 5. Takvim
 
@@ -50,9 +50,9 @@ Her satır bir haftaya karşılık gelir ve `TESLIM.md`'de kanıt dosyasıyla g�
 | 9 | Kullanım senaryosu özeti | Hafta 9 lab'ı: `docs/kullanim_senaryosu.md` ilk sürüm (proje fikri burada doğar) |
 | 10 | 3 dakikalık fikir sunumları | Problem → çözüm → ölçüm → risk; hoca her takıma yazılı 2 satır not verir; takımlar kesinleşir |
 | 11 | **Kapsam + eval planı onayı** | Atölye: kullanım senaryosu, eval planı (kaç vaka, nereden, ilk 5 vaka yazılmış), en küçük çalışan sürüm yerelde, görev dağılımı, plan B ([`week11/README.md`](../week11/README.md)) |
-| 12 | **Ara teslim** (notlandırılmaz, zorunlu) | Yayında URL + ≥10 eval vakası + README iskeleti + `.env.example`; sınıf kanalına link |
-| 13 | **Red team eşleşmesi + prova** | Takımlar birbirinin sistemini `week8/guvenlik/kirmizi_takim_kontrol_listesi.md` kurallarıyla test eder, rapor teslim eder; kronometreli sunum provası |
-| 14 | **Sunumlar** | 3 dk + 2 dk soru-cevap; `TESLIM.md` son hali; akran değerlendirmesi |
+| 12 | **Ara teslim + red team eşleşmesi + prova** | Ara teslim (notlandırılmaz, zorunlu): yayında URL + ≥10 eval vakası + README iskeleti + `.env.example`, sınıf kanalına link. Aynı derste red team eşleşmesi: takımlar birbirinin sistemini `week8/guvenlik/kirmizi_takim_kontrol_listesi.md` kurallarıyla test eder, raporu **sunumdan önceki çarşamba** teslim eder. Kronometreli sunum provası |
+| 13 | **Sunumlar** | 3 dk + 2 dk soru-cevap; `TESLIM.md` son hali; akran değerlendirmesi |
+| 14 | — | Resmî tatil (1 Ocak); ders yok |
 | 15 | Final sınavı | Senaryo soruları ([`week11/final_konu_haritasi.md`](../week11/final_konu_haritasi.md)) |
 
 Kesin tarihler ve son teslim saati sınıf kanalında duyurulur. Sunumdan sonra 48 saat içinde soru-cevapta çıkan düzeltmelerle `TESLIM.md` güncellenebilir (son commit sayılır).
@@ -78,14 +78,14 @@ Kesin tarihler ve son teslim saati sınıf kanalında duyurulur. Sunumdan sonra 
 
 ## 7. Sıfır maliyetli yığın hatırlatması (Eylül 2026)
 
-Modeller: hocanın Azure AI Foundry endpoint'i + Gemini API ücretsiz katmanı (Flash / Flash-Lite) + Groq + OpenRouter `:free` + yerelde Ollama. Hesaplama: Codespaces (Student Pack, ayda 180 çekirdek-saat), Kaggle / Colab GPU, Modal kredileri. Deploy: Streamlit Community Cloud, Render, Vercel Hobby, Cloudflare, Azure Static Web Apps + Functions, Container Apps her zaman ücretsiz katmanı. Vektör veritabanı: Qdrant bellek içi (Hafta 5) → Supabase pgvector → Azure AI Search Free. Türkçe gömme: `gemini-embedding-001`, `bge-m3`, `ytu-ce-cosmos/turkish-e5-large`. Tam liste: [`week1/ogrenci_kaynaklari_2026.md`](../week1/ogrenci_kaynaklari_2026.md). Ücretli model **gerekmez**: maliyeti ölçmeniz yeter, ödemeniz değil.
+Modeller: hocanın verdiği OpenRouter anahtarı + Gemini API ücretsiz katmanı (Flash / Flash-Lite) + Groq + OpenRouter `:free` + yerelde Ollama. Hesaplama: Codespaces (Student Pack, ayda 180 çekirdek-saat), Kaggle / Colab GPU, Modal kredileri. Deploy: Streamlit Community Cloud, Render, Vercel Hobby, Cloudflare, Azure Static Web Apps + Functions, Container Apps her zaman ücretsiz katmanı. Vektör veritabanı: Qdrant bellek içi (Hafta 5) → Supabase pgvector → Azure AI Search Free. Türkçe gömme: `gemini-embedding-001`, `bge-m3`, `ytu-ce-cosmos/turkish-e5-large`. Tam liste: [`week1/ogrenci_kaynaklari_2026.md`](../week1/ogrenci_kaynaklari_2026.md). Ücretli model **gerekmez**: maliyeti ölçmeniz yeter, ödemeniz değil.
 
 ## 8. Öğretim elemanının sağlayacakları
 
 - Son teslim tarihi, saati ve LMS bağlantısı (sınıf kanalında).
-- Her takım için Azure AI Foundry endpoint'i + anahtarı (dönem sonunda yenilenir; sızarsa hemen yenilenir).
+- Her takım için harcama limitli bir OpenRouter anahtarı (Hafta 11'de, takım liderine özel mesajla; limit dolarsa hocaya yazın; dönem sonunda kapatılır, sızarsa hemen kapatılıp yenisi verilir).
 - Ders reposunda örnek Türkçe derlemler: `week5/derlem/` (çalışan el kitabı), `week3/news.json` (haber parçaları), `week7/araclar_yerel.py` (sipariş/kargo verisi), `week9/senaryolar/`.
-- Hafta 11 atölyesinde kapsam onayı; Hafta 13'te red team eşleştirmesi.
+- Hafta 11 atölyesinde kapsam onayı; Hafta 12'de red team eşleştirmesi.
 
 ## 9. Teslimden önce
 

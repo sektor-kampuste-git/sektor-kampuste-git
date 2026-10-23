@@ -76,7 +76,7 @@ Kurulum: `pip install -r week7/requirements.txt` (`mcp` 2.x). `.env` Hafta 4'tek
 | Belirti | Çözüm |
 |---|---|
 | `ModuleNotFoundError: mcp.server.mcpserver` | `mcp` 1.x kurulu; `pip install "mcp>=2,<3"`. (1.x'te sınıf adı `FastMCP` idi.) |
-| Model araç çağırmıyor, düz cevap veriyor | Küçük yerel modellerin araç desteği zayıf; Foundry/Gemini kullanın. Araç açıklamasını netleştirin |
+| Model araç çağırmıyor, düz cevap veriyor | Küçük yerel modellerin araç desteği zayıf; OpenRouter (`openai/gpt-6-luna`) ya da Gemini kullanın. Araç açıklamasını netleştirin |
 | Araç argümanları yanlış (`siparis_no` yerine `order_id`) | Şemadaki `description`'a örnek ekleyin; `required` listesini kontrol edin |
 | `--mcp` takılıyor | Sunucu stdout'a `print` yapıyorsa protokol bozulur; MCP sunucusunda log için `stderr` kullanın |
 | VS Code sunucuyu görmüyor | `mcp.json` içindeki `command` sanal ortamdaki python'a işaret etsin; VS Code'u yeniden başlatın |

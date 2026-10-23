@@ -2,7 +2,7 @@
 
 > Bu klasör eğitmen içindir; repoya girer ama **anahtar, endpoint URL'si ya da öğrenci bilgisi içermez**. Üç dosya: bu liste (ne zaman ne yapılacak), [`duyuru_metinleri.md`](duyuru_metinleri.md) (sınıf kanalına kopyala-yapıştır), [`ders_oncesi_kontrol.md`](ders_oncesi_kontrol.md) (her ders günü 10 dakikalık prova). Öğrencilere kalan tek iş: anahtarları dağıtmak, hesapları açmak, kanala yazmak.
 
-**Takvim varsayımı:** dersler Cuma; Hafta 1 = 2 Ekim 2026 (Hafta 3 lab'ının ekran görüntüleri 16 Ekim). Buna göre Hafta 4 = 23 Ekim, Hafta 5 (vize) = 30 Ekim, Hafta 6 = 6 Kasım, Hafta 7 = 13 Kasım, Hafta 8 = 20 Kasım, Hafta 9 = 27 Kasım, Hafta 10 = 4 Aralık, Hafta 11 = 11 Aralık, Hafta 12 = 18 Aralık, Hafta 13 = 25 Aralık, **Hafta 14 = 1 Ocak 2027 (resmî tatil!)**, Hafta 15 = 8 Ocak. Sunum gününü ve final tarihini okul takvimine göre siz kesinleştirip duyurun; öğrenci belgeleri (`proje/PROJE_ODEVI.md`, `week11/README.md`) bilerek yalnızca hafta numarası kullanır.
+**Takvim varsayımı:** dersler Cuma; Hafta 1 = 2 Ekim 2026 (Hafta 3 lab'ının ekran görüntüleri 16 Ekim). Buna göre Hafta 4 = 23 Ekim, Hafta 5 (vize) = 30 Ekim, Hafta 6 = 6 Kasım, Hafta 7 = 13 Kasım, Hafta 8 = 20 Kasım, Hafta 9 = 27 Kasım, Hafta 10 = 4 Aralık, Hafta 11 = 11 Aralık, Hafta 12 = 18 Aralık, Hafta 13 = 25 Aralık (**sunumlar**), Hafta 14 = 1 Ocak 2027 (resmî tatil, ders yok), Hafta 15 = 8 Ocak (final). Sunumlar bu yüzden Hafta 13'e alındı; final tarihini okul takvimine göre siz kesinleştirip duyurun; öğrenci belgeleri (`proje/PROJE_ODEVI.md`, `week11/README.md`) bilerek yalnızca hafta numarası kullanır.
 
 ## 0. Hemen (Hafta 4'ten önce, tek seferlik)
 
@@ -18,38 +18,47 @@
 - [ ] **Slayt lab sayfaları:** her TR deste lab slaytında `github.com/<course-org>/ccai-2026/tree/main/labs/weekNN` yazıyor; §5'teki tabloya göre repo yolu ve dosya adlarını düzeltin (deste başına 1-2 slayt).
 - [ ] **Drive'daki `sinavlar/`, `ogrenciler/`, `Değerlendirilecek_Projeler/` klasörleri repoya girmedi** ve girmemeli; `bulut-bilisim-yz-katilimcilar.csv` öğrenci verisidir.
 
-## 1. Azure AI Foundry deployment planı
+## 1. Model erişimi: OpenRouter
 
-Öğrenci abonelikleri Foundry'de model deploy edemez; endpoint'leri siz sağlarsınız (slaytlar ve `HANDOFF.md` bunu varsayar). Önerilen set; adlar repodaki varsayılanlarla uyumludur:
+Ders modelleri **OpenRouter** üzerinden gelir: tek endpoint (`https://openrouter.ai/api/v1`), tek fatura, her öğrenciye ayrı ve **dolar limitli** anahtar. Kod değişmez; öğrenci `.env.example`'daki (b) bloğunu açar. Foundry Hafta 4'te bulut katmanlarının teorisi ve isteğe bağlı portal gösterimi olarak kalır.
 
-| Deployment adı (= `LLM_MODEL`) | Model | Kademe | Tür / bölge önerisi | Nerede kullanılıyor |
-|---|---|---|---|---|
-| `gpt-6-luna` | GPT-6 Luna | ucuz | Global Standard (en bol kota) ya da Sweden Central **Data Zone EU** (demo'da veri yerleşimini göstermek için; daha pahalı) | `.env.example` (b) bloğu varsayılanı; `week4/maliyet_hesapla.py --ucuz-model`; `week7/ajan_dongusu.py` fiyat varsayılanı ($0.10/$0.50); tüm lab'ların varsayılan modeli |
-| `deepseek-v4.1-flash` | DeepSeek V4.1 Flash | ucuz / açık ağırlık | Global | Hafta 1 ve 4 demosu: `foundry_test.py --model gpt-6-luna --model deepseek-v4.1-flash`; "açık vs kapalı" karşılaştırması |
-| `gpt-6-sol` **ya da** `claude-opus-5-5` | GPT-6 Sol / Claude Opus 5.5 | amiral | Global, düşük TPM yeter | Hakem (judge): `week5/degerlendir.py --hakem-model`, `week8/eval_calistir.py --hakem-model`, promptfoo `llm-rubric`; Hafta 4 "en pahalısı her zaman en iyisi değil" satırı |
-| *(isteğe bağlı)* bir gömme modeli | Foundry kataloğundan çok dilli bir embedding modeli | — | Global | `EMBED_BASE_URL` / `EMBED_MODEL` (Hafta 5). Zorunlu değil: öğrenciler ücretsiz `gemini-embedding-001` (Gemini) ya da `bge-m3` (Ollama) kullanabilir |
+| Model (= `LLM_MODEL`) | Kademe | Nerede kullanılıyor |
+|---|---|---|
+| `openai/gpt-6-luna` | ucuz ($0.10 / $0.50 1M token) | `.env.example` (b) varsayılanı; bütün lab'lar; `week4/maliyet_hesapla.py --ucuz-model` karşılığı |
+| `deepseek/deepseek-v4.1-flash` | ucuz / açık ağırlık | Hafta 1 ve 4 demosu: `foundry_test.py --model openai/gpt-6-luna --model deepseek/deepseek-v4.1-flash`; "açık vs kapalı" karşılaştırması |
+| `anthropic/claude-opus-5.5` | amiral ($4 / $20) | Hakem (judge): `week5/degerlendir.py --hakem-model`, `week8/eval_calistir.py --hakem-model`; promptfoo `llm-rubric` (`openai:chat:anthropic/claude-opus-5.5`) |
+| *(gömme)* | — | Gerekmez: öğrenciler ücretsiz `gemini-embedding-001` (Gemini) ya da `bge-m3` (Ollama) kullanır |
 
-**Kota:** 40-50 öğrenci aynı anda lab yaparken tek deployment 429 verir (`HANDOFF.md` uyarısı). Her deployment'ın TPM'ini aboneliğin izin verdiği en üste çekin; yetmezse `gpt-6-luna` için ikinci bir deployment (`gpt-6-luna-b`) açıp sınıfı ikiye bölün. Lab'larda `max_tokens` küçük (README'lerde zaten 300-400).
-**Maliyet koruması:** Cost Management → Budgets: aylık bütçe ve %80 / %120 alarmı (Hafta 4 slaytındaki tavsiyenin aynısı). Dönem başına beklenen tüketim: lab başına öğrenci başına < $0.05; projelerde takım başına birkaç dolar.
-**Endpoint biçimi:** `https://<kaynak-adı>.openai.azure.com/openai/v1/` (sonunda `/openai/v1/`; `api-version` gerekmez). Model adı = **deployment adı**. `week4/README.md` sık sorunlar tablosu bunu anlatıyor.
+Kimlikler ve fiyatlar Ekim 2026'da OpenRouter model sayfalarından alındı; dönem başında openrouter.ai/models üzerinden bir kez kontrol edin. `:free` modeller sık değişir ve bazıları istemleri eğitimde kullanır; derste ücretli modeller + limitli anahtar kullanın.
+
+**Kurulum (bir kez, ~15 dk):**
+1. openrouter.ai'de hesap → *Settings → Credits*: bakiye yükleyin. Tahmin: 45 öğrenci × 1 $ limit + 15 takım × 3 $ limit = **en kötü durumda ~90 $**; gerçek tüketim çok daha düşük (lab başına öğrenci başına < 0.05 $).
+2. *Settings → Privacy*: "model eğitimi için veri kullanan sağlayıcılara izin ver" kapalı olsun (KVKK; Hafta 9 anlatımıyla tutarlı).
+3. *Settings → Management API Keys → Create*: yönetim anahtarı. Model çağıramaz, yalnızca anahtar üretir. Dosyaya yazmayın: `export OPENROUTER_MANAGEMENT_KEY=...`
+4. Öğrenci anahtarları: `python hoca/openrouter_anahtarlari.py olustur --onek ogr --adet 45 --limit 1` → `anahtarlar.csv` (gitignore'da). Etiketler sıra numarası; `ogr-NN` ↔ öğrenci eşleşmesi yalnızca sizin yerel listenizde.
+5. Takım anahtarları (Hafta 11): `python hoca/openrouter_anahtarlari.py olustur --onek takim --adet 15 --limit 3 --cikti takim_anahtarlari.csv`.
+6. Harcama takibi: `python hoca/openrouter_anahtarlari.py listele`. Dönem sonu: `... kapat --onek ogr` ve `... kapat --onek takim`.
+
+**Kota:** ücretli modellerde OpenRouter tarafında istek sınırı pratikte sorun olmaz; sağlayıcı yoğunsa OpenRouter otomatik olarak başka sağlayıcıya yönlendirir. 429 görülürse birkaç saniye bekleyip tekrar.
 
 ## 2. Anahtar dağıtımı
 
 | Kime | Ne | Nasıl | Ne zaman yenilenir |
 |---|---|---|---|
-| Bütün sınıf (lab'lar) | Tek Foundry kaynağının **Key 1** + endpoint + deployment adları | LMS duyurusu ya da sınıf kanalında sabitlenmiş mesaj; **slaytlara yazmayın**, ekran görüntüsüne girmesin | Hafta 11'de (proje anahtarları verilince) ve dönem sonunda; sızıntı şüphesinde hemen (Key 2'ye geçin, sonra Key 1'i yenileyin) |
-| Her proje takımı (Hafta 11'den itibaren) | Ayrı Foundry projesi/kaynağı ya da en azından ayrı deployment + bütçe alarmı | Takım liderine özel mesaj; takım `.env`'e yazar, repoya asla girmez | Dönem sonunda; takım üyesi ayrılırsa |
-| Öğrenci (kendi) | Gemini (AI Studio), Groq, OpenRouter, Streamlit Cloud, Langfuse, GitHub token | Öğrenci kendi açar (Hafta 1 lab'ı) | — |
-| Hoca (kendi) | Gemini, Groq, OpenRouter yedekleri; Langfuse; Azure | Yalnızca `.env` (gitignore'da) | — |
+| Her öğrenci (lab'lar, Hafta 4'ten) | Kişiye özel OpenRouter anahtarı, 1 $ limit | LMS'te kişiye özel mesaj ([`duyuru_metinleri.md`](duyuru_metinleri.md) şablonu); **slayta, kanala, ekran görüntüsüne yazmayın** | Sızarsa o anahtarı `kapat` + yenisini `olustur --baslangic NN`; limit dolarsa OpenRouter panelinden limiti artırın |
+| Her proje takımı (Hafta 11'den) | Takım anahtarı, 3 $ limit | Takım liderine özel mesaj; takım `.env`'e yazar, repoya asla girmez | Dönem sonunda kapatılır |
+| Öğrenci (kendi) | Gemini (AI Studio), Groq, Streamlit Cloud, Langfuse, GitHub token | Öğrenci kendi açar (Hafta 1 lab'ı) | — |
+| Hoca (kendi) | OpenRouter yönetim anahtarı, Gemini, Groq; Langfuse; Azure | Yalnızca terminal ortam değişkeni ya da `.env` (gitignore'da) | — |
 
-Sızan anahtar kuralı (README'de): anahtar repoda görülürse sızmış sayılır, yenilenir, projede −10.
+Sızan anahtar kuralı (README'de): anahtar repoda görülürse sızmış sayılır, kapatılır, projede −10. Limitli anahtar sızsa bile en fazla limiti kadar harcanır.
 
 ## 3. Hesap ve servis listesi
 
 | Servis | Kim | Ne için | Not |
 |---|---|---|---|
-| Azure AI Foundry (ai.azure.com) | Hoca | Deployment'lar (§1), kullanım panosu demosu (Hafta 4) | Kurumsal/PEAKUP aboneliği |
-| Azure for Students | Öğrenci | Container Apps (Hafta 4, 6), Key Vault, AI Search Free | $100 / 12 ay, kart yok; Foundry deploy edemez |
+| OpenRouter (openrouter.ai) | Hoca | Ders modelleri ve öğrenci/takım anahtarları (§1) | Kredi yükleme; yönetim anahtarı |
+| Azure AI Foundry (ai.azure.com) | Hoca (isteğe bağlı) | Hafta 4'te portal gösterimi | Model erişimi için gerekmez |
+| Azure for Students | Öğrenci | Container Apps (Hafta 4, 6), Key Vault, AI Search Free | $100 / 12 ay, kart yok; Foundry'de model deploy edemez (bu yüzden OpenRouter) |
 | Azure aboneliği (hoca) | Hoca | `week4/ozetleyici/deploy_aca.sh` canlı demosu; Container Apps | Dersten önce bir kez deploy (3-5 dk), ders sonunda `az group delete -n rg-ccai-week4 --yes` |
 | Google AI Studio | Öğrenci + hoca | Gemini ücretsiz anahtarı; `gemini-embedding-001` | Ücretsiz katman verisi eğitimde kullanılabilir → özel veri yok |
 | Google AI Plus (gemini.google/tr/students) | Öğrenci | 1 yıl ücretsiz (18+, SheerID) | **31 Aralık 2026'ya kadar** başvuru; Hafta 4-5 duyurusunda hatırlatın |
@@ -63,19 +72,19 @@ Sızan anahtar kuralı (README'de): anahtar repoda görülürse sızmış sayıl
 | n8n (Docker) | Hoca | Hafta 9 prototip | `cd week9/n8n && docker compose up -d` dersten önce; `.env` n8n klasöründe |
 | Copilot Studio | Hoca (varsa M365 tenant) | Hafta 9 Plan A | Lisans yoksa n8n yolu (README'de kıyas tablosu) |
 | Ollama | Hoca + öğrenci | Hafta 1, 2, 4, 5 yerel model | `qwen3.5:4b`, `bge-m3`, `vngrs-ai/Kumru-2B`; Codespaces'te çalışmaz |
-| Groq, OpenRouter | Yedek | Foundry 429 verirse ikinci sağlayıcı | Ücretsiz katman limitleri `week1/ogrenci_kaynaklari_2026.md` |
+| Groq, Gemini | Yedek | OpenRouter limiti dolarsa ya da ağ sorunu olursa ikinci sağlayıcı | Ücretsiz katman limitleri `week1/ogrenci_kaynaklari_2026.md` |
 
 ## 4. Hafta hafta
 
 Her satır: **önceki gün** hazırlık → **ders günü** ısıtma (komutlar `ders_oncesi_kontrol.md`'de) → **duyuru** (`duyuru_metinleri.md`).
 
-### Hafta 4 — Bulut, Foundry, maliyet, Container Apps (23 Ekim)
-- Önceki gün: §0 ve §1 bitmiş; `week4/fiyatlar.json` içindeki `tarih` alanını ve fiyatları sağlayıcı sayfalarından kontrol edin (22 Eylül 2026 liste fiyatları); `week4/ozetleyici/deploy_aca.sh` bir kez çalıştırılmış (ACR + ortam kurulumu 3-5 dk); Foundry anahtarını LMS'e koyun.
-- Ders günü: `foundry_test.py` iki deployment + Ollama ile; `maliyet_hesapla.py` iki senaryo; Container Apps URL'si açılıyor; sahte sunucu yedeği hazır.
+### Hafta 4 — Bulut, model erişimi, maliyet, Container Apps (23 Ekim)
+- Önceki gün: §0 ve §1 bitmiş; `week4/fiyatlar.json` içindeki `tarih` alanını ve fiyatları sağlayıcı sayfalarından kontrol edin (22 Eylül 2026 liste fiyatları); `week4/ozetleyici/deploy_aca.sh` bir kez çalıştırılmış (ACR + ortam kurulumu 3-5 dk); öğrenci OpenRouter anahtarlarını (§1) LMS'ten kişiye özel gönderin.
+- Ders günü: `foundry_test.py` iki OpenRouter modeli + Ollama ile; `maliyet_hesapla.py` iki senaryo; Container Apps URL'si açılıyor; sahte sunucu yedeği hazır.
 - Duyuru: Hafta 4 ön koşullar + proje duyurusu + vize hatırlatması (üçü aynı gün).
 
 ### Hafta 5 — Vize (30 dk) + RAG (30 Ekim)
-- Önceki gün: vize kâğıtları (Drive `sinavlar/TR/`; repoya girmez); `EMBED_MODEL` kararı (Gemini `gemini-embedding-001` ücretsiz → öğrencilere bu; Foundry gömme deployment'ı açtıysanız adını duyurun); `pip install -r week5/requirements.txt`; `indeksle.py` → `sor.py` → `degerlendir.py` gerçek anahtarla bir kez; isteğe bağlı `docker run -p 6333:6333 qdrant/qdrant`.
+- Önceki gün: vize kâğıtları (Drive `sinavlar/TR/`; repoya girmez); `EMBED_MODEL` kararı (Gemini `gemini-embedding-001` ücretsiz → öğrencilere bu; ayrı bir gömme endpoint'i açtıysanıznız adını duyurun); `pip install -r week5/requirements.txt`; `indeksle.py` → `sor.py` → `degerlendir.py` gerçek anahtarla bir kez; isteğe bağlı `docker run -p 6333:6333 qdrant/qdrant`.
 - Ders günü: `gomme_demo.py`, `parcala.py`, dört `sor.py` sorusu, `degerlendir.py --sinir 6`. Hakem modeli amiral deployment (`--hakem-model gpt-6-sol`).
 - Duyuru: vize hatırlatması (bir hafta önce, Hafta 4'te), Hafta 5 ön koşullar.
 
@@ -85,7 +94,7 @@ Her satır: **önceki gün** hazırlık → **ders günü** ısıtma (komutlar `
 
 ### Hafta 7 — Ajanlar, MCP, A2A (13 Kasım)
 - Önceki gün: `pip install "mcp>=2,<3"`; `mcp_istemci.py`, `ajan_dongusu.py --mcp`, `a2a_mini.py` gerçek modelle; `week7/ide_ayarlari/vscode_mcp.json` içindeki python yolunu kendi sanal ortamınıza çevirip VS Code Copilot Agent modunda "SIP-1001 nerede?" denemesi.
-- Not: küçük yerel modellerin araç çağrısı zayıf; demoda Foundry/Gemini.
+- Not: küçük yerel modellerin araç çağrısı zayıf; demoda OpenRouter `openai/gpt-6-luna` ya da Gemini.
 - Duyuru: `mcp` paketi 2.x, Copilot agent modu.
 
 ### Hafta 8 — Tracing, eval, güvenlik (20 Kasım)
@@ -105,15 +114,15 @@ Her satır: **önceki gün** hazırlık → **ders günü** ısıtma (komutlar `
 - Önceki gün: takım listesi; masa masa onay için `week11/README.md` kontrol noktaları; proje anahtarları (§2) hazır.
 - Duyuru: kapsam onayı + eval planı; ara teslim tarihi (Hafta 12).
 
-### Hafta 12 — Ara teslim (18 Aralık)
+### Hafta 12 — Ara teslim + red team eşleşmesi + prova (18 Aralık)
 - Kanalda link toplama; `portfolyo_kontrol.py` ile hızlı tarama; eksik URL/eval'e geri bildirim.
-
-### Hafta 13 — Red team eşleşmesi + prova (25 Aralık)
 - Önceki gün: eşleşme listesi (takım A ↔ takım B, kimse kendi sistemini test etmez); rapor şablonu `week8/guvenlik/kirmizi_takim_kontrol_listesi.md`; prova için kronometre.
-- Duyuru: red team eşleşme duyurusu (kurallar + rapor teslimi).
+- Duyuru: ara teslim + red team eşleşmesi (kurallar, rapor 23 Aralık çarşamba akşamı).
 
-### Hafta 14 — Sunumlar (tarih: 1 Ocak tatil → okul takvimine göre belirleyin)
+### Hafta 13 — Sunumlar (25 Aralık)
 - `week11/sunum_gunu_akisi.md`; akran değerlendirme formu (anonim, 3 soru); sunum sırası bir gün önce kanalda; HDMI/USB-C adaptörü.
+
+### Hafta 14 — Ders yok (1 Ocak, resmî tatil)
 
 ### Hafta 15 — Final sınavı
 - Drive `sinavlar/TR/` (repoya girmez); `week11/final_konu_haritasi.md` öğrencinin elinde.
@@ -135,14 +144,14 @@ TR desteler (`Drive: 2026-Guz-Yeni-Seri/TR/Hafta-NN-*.pptx`) Eylül 2026 tasarı
 | 8 | `trace_langfuse.py`, `prompts/system.txt` (`CANARY-7f3a`), `promptfooconfig.yaml`, `.github/workflows/evals.yml`, `injections.md` | `izleme/izleme_demo.py`, `promptlar/v1.txt` `v2.txt`, `evaller.json` + `eval_calistir.py`, `promptfooconfig.yaml`, `ci/eval.yml`, `guvenlik/saldiri_seti.json` + `kirmizi_takim.py` |
 | 9 | `TEMPLATE.md` (8 bölüm), `eu-ai-act-checklist.md`, `n8n-workflow.json`, `classify.py` + `emails.txt` | `kullanim_senaryosu_sablonu.md` (9 bölüm), `yonetisim_kontrol_listesi.md`, `n8n/destek_triyaj_workflow.json`, `roi_hesapla.py` + `senaryolar/` |
 | 10 | `README-TEMPLATE.md`, 6 maddelik liste, `cv-bullets-TR-EN.md`, 90 sn video | `proje_readme_sablonu.md`, `portfolyo_kontrol.py` (10 madde), `cv_maddeleri.md`, `profil_kontrol_listesi.md`; proje videosu ≤ 2 dk |
-| Proje | "10. haftada proje sunumları", "≥ 30 örnekli altın set" | Hafta 10 fikir sunumu, Hafta 14 final sunumu; ≥ 15 vaka zorunlu, 30 + kalibre hakem tam puan (`proje/PROJE_ODEVI.md`) |
+| Proje | "10. haftada proje sunumları", "≥ 30 örnekli altın set" | Hafta 10 fikir sunumu, Hafta 13 final sunumu; ≥ 15 vaka zorunlu, 30 + kalibre hakem tam puan (`proje/PROJE_ODEVI.md`) |
 
 ## 6. Bilinen tuzaklar
 
 - `week2/tokens.py` ilk çalıştırmada `o200k_base` sözlüğünü ve HF tokenizer dosyalarını indirir; kampüs Wi-Fi'ı engellerse HF satırları atlanır, tiktoken dosyası inmezse betik durur → eğitim laptopunda evden bir kez çalıştırın (önbelleğe alınır).
 - Codespaces'te Ollama çalışmaz; yerel lab adımları laptopta.
-- Foundry'de `404 model`: `LLM_MODEL` deployment adı değil model adı yazılmış.
+- OpenRouter'da `404 model`: model adında sağlayıcı öneki unutulmuş (`gpt-6-luna` değil `openai/gpt-6-luna`). `402`: anahtar limiti doldu → `listele` ile bakın, panelden artırın.
 - Streamlit Cloud uyuyan uygulama: sunum/notlandırma öncesi bir kez açın.
 - promptfoo python sağlayıcısı: `PROMPTFOO_PYTHON=.venv/bin/python`.
 - Sahte sunucu (`araclar/sahte_llm_sunucu.py`) her haftanın akışını çalıştırır ama sayılar anlamsızdır; eval'ler "başarısız" görünür.
-- Hafta 14 = 1 Ocak: resmî tatil. Sunumları Hafta 13'e çekmek ya da ek güne almak gerekir.
+- Hafta 14 = 1 Ocak resmî tatil; sunumlar bu yüzden Hafta 13'te (25 Aralık). Red team raporları sunumdan önceki çarşamba gelir, sıkışık bir hafta: Hafta 12'de eşleşmeyi derste yapın.

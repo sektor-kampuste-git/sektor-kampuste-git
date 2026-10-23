@@ -17,7 +17,7 @@
 | Paket | Ne verir | Not |
 |---|---|---|
 | GitHub Student Developer Pack | GitHub Pro, Codespaces 180 çekirdek-saat/ay, JetBrains, DigitalOcean kredisi, Heroku $13/ay × 24, Camber (5 GPU saat/ay), Azure for Students bağlantısı | Türkiye dahil; okul e-postası + öğrenci kimliği; **1. haftada başvurun** |
-| Azure for Students | $100 / 12 ay, kart yok, yenilenebilir | Azure OpenAI / Foundry öğrenci aboneliklerinde tarihsel olarak **engelli** → Foundry endpoint'lerini hoca sağlar; öğrenciler App Service, Functions, Storage, Cosmos, AI Search, Container Apps kullanır |
+| Azure for Students | $100 / 12 ay, kart yok, yenilenebilir | Azure OpenAI / Foundry öğrenci aboneliklerinde tarihsel olarak **engelli** → ders modellerine erişimi hoca OpenRouter anahtarıyla sağlar; öğrenciler App Service, Functions, Storage, Cosmos, AI Search, Container Apps kullanır |
 | Google Cloud | $300 / 90 gün deneme (kart gerekir); Google Cloud for Education Skills kredileri | |
 | Oracle Always Free | 2 OCPU / 12 GB ARM | 7B Ollama modeli çalıştırabilir |
 
@@ -52,7 +52,7 @@ Chroma yerel (varsayılan) · Qdrant Cloud 1 GB ücretsiz · Pinecone starter ~1
 
 ## Önerilen sıfır maliyetli yığın
 1. **Hafta 1 hesapları:** GitHub Student Pack → Codespaces + Azure for Students; Google AI Plus öğrenci; Zed öğrenci; AWS Free plan daha sonra.
-2. **Modeller:** hocanın Foundry endpoint'leri + Gemini Flash ücretsiz + Groq + OpenRouter free + yerel Ollama.
+2. **Modeller:** hocanın OpenRouter anahtarı + Gemini Flash ücretsiz + Groq + OpenRouter free + yerel Ollama.
 3. **Hesaplama:** Codespaces; Kaggle/Colab GPU; Modal.
 4. **Yayın:** Streamlit Cloud / Render / Vercel / Cloudflare / Azure SWA+Functions / Container Apps.
 5. **RAG:** Chroma → Supabase pgvector → Azure AI Search Free; Türkçe e5 gömmeleri.

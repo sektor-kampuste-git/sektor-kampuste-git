@@ -36,12 +36,12 @@ Kurulum: `pip install -r week3/requirements.txt`. `.env` ortak (`LLM_BASE_URL` /
    ```bash
    cd week3
    python extract.py                          # .env: Gemini Flash-Lite
-   # .env'de LLM_BASE_URL/LLM_API_KEY/LLM_MODEL → hocanın Foundry deployment'ı, tekrar:
+   # .env'de LLM_BASE_URL/LLM_API_KEY/LLM_MODEL → hocanın OpenRouter anahtarı (ör. `openai/gpt-6-luna`), tekrar:
    python extract.py
    ```
    Değişen yalnızca `base_url`, `api_key`, `model`. Özet satırını okuyun: `model=... records=20 failed=0 total retries=...`.
 3. **Bozalım (4 dk).** Bir parçanın tarihini gelecek haftaya çekin ya da `not_future` doğrulayıcısına bakın: Pydantic reddeder, Instructor hata metnini yeniden deneme prompt'una koyar, ikinci cevap tam o alanı düzeltir. 20. parça: şema biçimi korur ama başlığa `HACKED` yazılmasını yalnızca sizin doğrulayıcınız yakalar (lab alıştırması).
-4. **Mode.JSON vs Mode.TOOLS (2 dk).** `instructor.Mode.JSON` ücretsiz sağlayıcılarda en taşınabilir olanı; Gemini ve Foundry'de `Mode.TOOLS` deneyip yeniden deneme sayısını karşılaştırın.
+4. **Mode.JSON vs Mode.TOOLS (2 dk).** `instructor.Mode.JSON` ücretsiz sağlayıcılarda en taşınabilir olanı; Gemini ve OpenRouter'daki GPT modelinde `Mode.TOOLS` deneyip yeniden deneme sayısını karşılaştırın.
 
 > **Ağ çökerse:** sahte sunucu `response_format` görünce (Instructor'ın `Mode.JSON`'u dahil) şemaya uygun örnek JSON döndürür; akış aynen çalışır, değerler anlamsızdır. Gerçek modelle alınmış bir terminal çıktısının ekran görüntüsünü yanınızda bulundurun.
 
@@ -53,7 +53,7 @@ Kurulum: `pip install -r week3/requirements.txt`. `.env` ortak (`LLM_BASE_URL` /
 2. **Kurulum (2 dk).** `pip install -r week3/requirements.txt`; `.env` kökte, Gemini anahtarınızla.
 3. **extract.py'yi okuyun ve tamamlayın (5 dk).** `NewsRecord` ve üç doğrulayıcı hazır (title boş değil ve ≤120 karakter; entities tekilleştirilmiş ve ≥1; date ≤ bugün). Dördüncüsünü siz ekleyin: `HACKED` başlığını reddeden bir `field_validator` (20. parçaya bakın).
 4. **Çalıştırın (4 dk).** `cd week3 && python extract.py` → satır başına `retries=`, sonunda özet; `results.csv` ve `failed.csv`.
-5. **Sağlayıcı değiştirin (4 dk).** `.env`'de yalnızca üç değeri değiştirip tekrar çalıştırın (Groq, OpenRouter, Ollama `qwen3.5:4b` ya da hocanın Foundry endpoint'i). İki CSV'yi karşılaştırın: yeniden denemeler, hatalar, token'lar. Hangi doğrulayıcı en çok tetiklendi?
+5. **Sağlayıcı değiştirin (4 dk).** `.env`'de yalnızca üç değeri değiştirip tekrar çalıştırın (Groq, OpenRouter, Ollama `qwen3.5:4b` ya da hocanın OpenRouter anahtarı). İki CSV'yi karşılaştırın: yeniden denemeler, hatalar, token'lar. Hangi doğrulayıcı en çok tetiklendi?
 6. **Teslim (2 dk).** `results.csv` dosyalarını (anahtarsız!) kendi reponuza `week3/` altına push'layın; yeniden deneme özet satırının ekran görüntüsü sınıf kanalına. Bonus: `npm install && npm run extract` ile Zod sürümü (`results-ts.csv`).
 
 | Sağlayıcı | `LLM_BASE_URL` | `LLM_MODEL` (örnek) | Not |
@@ -62,7 +62,7 @@ Kurulum: `pip install -r week3/requirements.txt`. `.env` ortak (`LLM_BASE_URL` /
 | Groq (ücretsiz) | `https://api.groq.com/openai/v1` | `openai/gpt-oss-20b` | ~30 istek/dk, günde 1.000 |
 | OpenRouter (ücretsiz) | `https://openrouter.ai/api/v1` | `qwen/qwen3.5-9b:free` | günde 50 istek |
 | Ollama (yerel) | `http://localhost:11434/v1` | `qwen3.5:4b` | `LLM_API_KEY=ollama`; JSON şema çıktısını destekler |
-| Azure AI Foundry | hocadan | hocadan (deployment adı) | sınıf kanalında |
+| OpenRouter (hocanın anahtarı) | `https://openrouter.ai/api/v1` | `openai/gpt-6-luna` | kişiye özel, harcama limitli; LMS mesajında |
 
 **Başarı kriterleri**
 - [ ] `results.csv` iki sağlayıcıda da geçerli ISO tarih ve sentiment içeren 20 satırdan oluşuyor
@@ -84,7 +84,7 @@ Kurulum: `pip install -r week3/requirements.txt`. `.env` ortak (`LLM_BASE_URL` /
 
 ## Gelecek hafta
 
-**Hafta 4 — Yapay zeka için bulut: IaaS'tan "hizmet olarak model"e.** Azure AI Foundry'den model kiralamak, gerçek bir fatura hesaplamak ve Türkçe özetleyiciyi Azure Container Apps'te yayınlamak. Dersten önce: Azure for Students'ı etkinleştirin (Hafta 1 lab adım 2), `pip install -r week4/requirements.txt`.
+**Hafta 4 — Yapay zeka için bulut: IaaS'tan "hizmet olarak model"e.** Bulut katmanları ve "hizmet olarak model" (Foundry, OpenRouter), API'den model kiralamak, gerçek bir fatura hesaplamak ve Türkçe özetleyiciyi Azure Container Apps'te yayınlamak. Dersten önce: Azure for Students'ı etkinleştirin (Hafta 1 lab adım 2), `pip install -r week4/requirements.txt`.
 
 ## Kaynaklar
 

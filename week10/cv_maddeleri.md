@@ -4,7 +4,7 @@ Formül: **Ne yaptın (fiil) + neyle (teknoloji) + ölçülebilir sonuç + kanı
 
 | Zayıf | Güçlü (TR) | Güçlü (EN) |
 |---|---|---|
-| "LLM projeleri yaptım" | "OpenAI uyumlu tek istemciyle 3 sağlayıcıya (Foundry, Gemini, Ollama) bağlanan, model başına maliyet/gecikme ölçen bir karşılaştırma aracı yazdım" | "Built a provider-agnostic LLM benchmarking tool (Foundry, Gemini, Ollama) reporting per-model cost and latency via a single OpenAI-compatible client" |
+| "LLM projeleri yaptım" | "OpenAI uyumlu tek istemciyle 3 sağlayıcıya (OpenRouter, Gemini, Ollama) bağlanan, model başına maliyet/gecikme ölçen bir karşılaştırma aracı yazdım" | "Built a provider-agnostic LLM benchmarking tool (Foundry, Gemini, Ollama) reporting per-model cost and latency via a single OpenAI-compatible client" |
 | "RAG chatbot geliştirdim" | "8 belgelik Türkçe derlemde hibrit (BM25+vektör, RRF) RAG kurdum; RAGAS tarzı eval ile sadakati 0.71'den 0.93'e çıkardım" | "Built hybrid-retrieval RAG (BM25 + vectors, RRF) over a Turkish corpus; raised faithfulness from 0.71 to 0.93 using a RAGAS-style eval set" |
 | "AI ajanı yaptım" | "Araç çağıran destek ajanına adım/token/USD/süre bütçesi ve durma koşulları ekledim; 4 aracı MCP sunucusu olarak VS Code'a açtım" | "Designed a tool-calling support agent with step/token/USD/time budgets and stop conditions; exposed 4 tools via an MCP server consumed by VS Code" |
 | "Prompt engineering" | "15 vakalık eval setini CI'ya bağladım; prompt v1→v3 geçişinde 6/15 → 14/15, güvenlik vakalarında 0 regresyon" | "Wired a 15-case eval suite into CI; prompt v1→v3 improved pass rate from 6/15 to 14/15 with zero security regressions" |

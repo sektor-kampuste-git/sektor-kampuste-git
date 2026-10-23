@@ -10,4 +10,4 @@
 
 **Süre:** 3:00 aşımında −2; 3:30'da kesilir. **Soru-cevap:** net ve kısa cevaplar +2 bonus (toplam 20'yi geçmez).
 
-Bu rubrik final projesi sunumunda da (Hafta 14) kullanılır; bugünkü sunum provadır, not ağırlığı düşüktür, geri bildirim yüksek.
+Bu rubrik final projesi sunumunda da (Hafta 13) kullanılır; bugünkü sunum provadır, not ağırlığı düşüktür, geri bildirim yüksek.

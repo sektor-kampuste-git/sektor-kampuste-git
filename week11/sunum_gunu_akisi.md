@@ -1,4 +1,4 @@
-# Sunum günü akışı (Hafta 14 — proje sunumları)
+# Sunum günü akışı (Hafta 13 — proje sunumları)
 
 | Süre | Ne olur |
 |---|---|

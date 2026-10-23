@@ -39,3 +39,7 @@ Thumbs.db
 results.csv
 failed.csv
 results-ts.csv
+
+# hoca/openrouter_anahtarlari.py çıktıları (gerçek anahtar içerir)
+anahtarlar*.csv
+*_anahtarlari.csv

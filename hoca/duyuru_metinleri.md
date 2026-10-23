@@ -11,20 +11,20 @@
 > Kurulum (bir kez): `git clone …` → `python -m venv .venv` → `cp .env.example .env` → anahtarınızı `LLM_API_KEY` satırına yazın. Ayrıntı kök README'de.
 > Depo salt okunur: buraya push yapamazsınız; lab teslimleri **kendi reponuza** (`<ad>_<üniversite>_<no>`) ve bu kanala ekran görüntüsüyle. `.env` hiçbir zaman commit'lenmez; sızan anahtar yenilenir.
 
-## Anahtar paylaşımı (LMS'e ya da sabitlenmiş mesaja; şablon)
+## Anahtar paylaşımı (LMS'te kişiye özel mesaj; şablon)
 
-> 🔑 **Azure AI Foundry erişimi (ders için, dönem sonunda yenilenir)**
-> `LLM_BASE_URL=https://<kaynak>.openai.azure.com/openai/v1/`
+> 🔑 **Ders model anahtarınız (`<ogr-NN>`, yalnızca size özel, 1 $ harcama limitli)**
+> `LLM_BASE_URL=https://openrouter.ai/api/v1`
 > `LLM_API_KEY=<anahtar>`
-> `LLM_MODEL=gpt-6-luna` (diğer deployment'lar: `deepseek-v4.1-flash`, `<amiral-model>`)
-> Bu değerleri `.env` dosyanıza yazın; ekran görüntüsüne, repoya, slayta koymayın. 429 alırsanız birkaç saniye bekleyip tekrar deneyin; kota bütün sınıfın ortak. Kendi ücretsiz anahtarınız (Gemini) her zaman yedeğiniz.
+> `LLM_MODEL=openai/gpt-6-luna` (diğerleri: `deepseek/deepseek-v4.1-flash`; hakem gerekirse `anthropic/claude-opus-5.5`)
+> Bu değerleri `.env` dosyanıza yazın (`.env.example` (b) bloğu); ekran görüntüsüne, repoya, kanala koymayın, kimseyle paylaşmayın. Limit bütün lab'lara fazlasıyla yeter; `402` alırsanız bana yazın. Kendi ücretsiz anahtarınız (Gemini) her zaman yedeğiniz.
 
 ---
 
-## Hafta 4 — Bulut, Foundry, maliyet, Container Apps
+## Hafta 4 — Bulut, model erişimi, maliyet, Container Apps
 
-> ☁️ **Hafta 4 (Cuma):** Yapay zeka için bulut: IaaS'tan "hizmet olarak model"e. Foundry'den model kiralayacak, gerçek bir aylık fatura hesaplayacak ve Türkçe özetleyiciyi bir URL'de yayınlayacağız.
-> **Dersten önce:** (1) Azure for Students aktif olsun (azure.microsoft.com/free/students; kart gerekmez) ve `az login` çalışsın; (2) `pip install -r week4/requirements.txt`; (3) LMS'teki Foundry endpoint + anahtarı `.env`'e yazın; (4) Ollama'da `qwen3.5:4b` inmiş olsun.
+> ☁️ **Hafta 4 (Cuma):** Yapay zeka için bulut: IaaS'tan "hizmet olarak model"e. API'den model kiralayacak (OpenRouter; Foundry'yi de göreceğiz), gerçek bir aylık fatura hesaplayacak ve Türkçe özetleyiciyi bir URL'de yayınlayacağız.
+> **Dersten önce:** (1) Azure for Students aktif olsun (azure.microsoft.com/free/students; kart gerekmez) ve `az login` çalışsın; (2) `pip install -r week4/requirements.txt`; (3) LMS'te size özel gelen OpenRouter anahtarını `.env`'e yazın (`.env.example` (b) bloğu); (4) Ollama'da `qwen3.5:4b` inmiş olsun.
 > **Lab teslimi:** üç ekran görüntüsü bu kanala: model karşılaştırma tablosu (`foundry_test.py`), maliyet tablosu (`maliyet_hesapla.py`), yayındaki `/saglik` yanıtı (ya da yerel çalıştırma). README: `week4/README.md`.
 > Azure'unuz henüz onaylanmadıysa: yerelde `uvicorn` ya da HF Spaces alternatifleri README'de.
 
@@ -32,7 +32,7 @@
 
 > 🧩 **Final projesi duyuruldu (%30):** `proje/PROJE_ODEVI.md` (PDF'i LMS'te). Türkçe bir kullanım senaryosu için bir yapay zeka uygulaması: tipli çıktılar + RAG **veya** araçlar/MCP + sıfır maliyetli deploy + ≥15 vakalık eval seti ve red team + maliyet ölçümü + yönetişim bölümü + sağlayıcıdan bağımsız kod + README "AI kullanımı".
 > **Takım:** 1-3 kişi; her üye her dosyayı anlatabilmeli.
-> **Takvim:** Hafta 9'a kadar senaryo + veri seçin (Hafta 9 lab'ında kullanım senaryosu özetini yazıyoruz) → Hafta 10: 3 dk fikir sunumu → Hafta 11: kapsam + eval planı onayı → Hafta 12: ara teslim (URL + ≥10 eval vakası) → Hafta 13: red team eşleşmesi + prova → Hafta 14: sunumlar + `TESLIM.md` → son teslim: `<tarih/saat>`.
+> **Takvim:** Hafta 9'a kadar senaryo + veri seçin (Hafta 9 lab'ında kullanım senaryosu özetini yazıyoruz) → Hafta 10: 3 dk fikir sunumu → Hafta 11: kapsam + eval planı onayı → Hafta 12: ara teslim (URL + ≥10 eval vakası) + red team eşleşmesi + prova → Hafta 13 (25 Aralık): sunumlar + `TESLIM.md` → son teslim: `<tarih/saat>`. Hafta 14 (1 Ocak) tatil.
 > Fikir listesi: `week11/proje_fikirleri.md`. Rubrik: `week11/degerlendirme_rubrigi.md`. Ücretli model gerekmez; maliyeti **ölçmeniz** yeter.
 
 ## Vize hatırlatması (Hafta 4'te gönderin)
@@ -56,7 +56,7 @@
 ## Hafta 7 — Ajanlar, MCP, A2A
 
 > 🛠️ **Hafta 7:** Bu kez siz ajan yazıyorsunuz: araç çağrısı döngüsü, bütçe ve durma koşulu, kendi MCP sunucunuz.
-> **Dersten önce:** `pip install -r week7/requirements.txt` (`mcp` 2.x); VS Code Copilot agent modu çalışıyor olsun (MCP istemcisi olarak). Araç çağrısı için Foundry ya da Gemini; küçük yerel modeller araç çağırmakta zayıf.
+> **Dersten önce:** `pip install -r week7/requirements.txt` (`mcp` 2.x); VS Code Copilot agent modu çalışıyor olsun (MCP istemcisi olarak). Araç çağrısı için OpenRouter (`openai/gpt-6-luna`) ya da Gemini; küçük yerel modeller araç çağırmakta zayıf.
 > **Lab teslimi:** `mcp_istemci.py` çıktısında yeni aracınızın göründüğü + ajanın onu çağırdığı iz satırı ekran görüntüsü. README: `week7/README.md`.
 
 ## Hafta 8 — Tracing, eval, güvenlik
@@ -83,18 +83,18 @@
 > Proje anahtarlarınız (takım başına) bu hafta özel mesajla.
 > **Ara teslim Hafta 12:** yayında URL + ≥10 eval vakası + README iskeleti + `.env.example`; linki bu kanala.
 
-## Hafta 12 — Ara teslim hatırlatması
+## Hafta 12 — Ara teslim + red team + prova
 
 > ⏱️ **Ara teslim bugün:** repo linki + canlı URL'yi bu mesajın altına yazın. Notlandırılmaz ama zorunlu; geri bildirim 3 gün içinde. `.env` repoda **olmasın**; `python week10/portfolyo_kontrol.py <repo>` ≥ 6/10 hedef.
 
-## Hafta 13 — Red team eşleşmesi + prova
+### Aynı hafta: red team eşleşmesi + prova
 
-> 🛡️ **Red team eşleşmesi:** `<Takım A ↔ Takım B, …>`. Kurallar: `week8/guvenlik/kirmizi_takim_kontrol_listesi.md` — yalnızca eşinizin sistemine, yalnızca ders kapsamındaki saldırı seti + kendi 2 saldırınız, veri silme/dolum yok, bulgular **tablo** olarak (cevap metinleri değil). Rapor: Hafta 13 sonuna kadar eşinize ve bu kanala (gizli bilgi yoksa). Kırılan her saldırı eval setinize vaka olur.
+> 🛡️ **Red team eşleşmesi:** `<Takım A ↔ Takım B, …>`. Kurallar: `week8/guvenlik/kirmizi_takim_kontrol_listesi.md` — yalnızca eşinizin sistemine, yalnızca ders kapsamındaki saldırı seti + kendi 2 saldırınız, veri silme/dolum yok, bulgular **tablo** olarak (cevap metinleri değil). Rapor: sunumdan önceki çarşamba (23 Aralık) akşamına kadar eşinize ve bu kanala (gizli bilgi yoksa). Kırılan her saldırı eval setinize vaka olur.
 > **Prova:** derste kronometreyle 3 dk; `week10/sunum_rubrigi.md` ile akran geri bildirimi.
 
-## Hafta 14 — Sunum günü
+## Hafta 13 — Sunum günü
 
-> 🎓 **Sunum günü `<tarih>`:** sıra `<liste>`; takım başına 3 dk sunum + 2 dk soru-cevap + 1 dk geçiş. Repo + demo URL'sini sabah bu kanala atın; demo videosu yerelde olsun (ağ bağımsız). `TESLIM.md` son hali repoda; soru-cevaptan sonra 48 saat düzeltme hakkı. Akran değerlendirme formu derste. Akış: `week11/sunum_gunu_akisi.md`.
+> 🎓 **Sunum günü 25 Aralık:** sıra `<liste>`; takım başına 3 dk sunum + 2 dk soru-cevap + 1 dk geçiş. Repo + demo URL'sini sabah bu kanala atın; demo videosu yerelde olsun (ağ bağımsız). `TESLIM.md` son hali repoda; soru-cevaptan sonra 48 saat düzeltme hakkı. Akran değerlendirme formu derste. Akış: `week11/sunum_gunu_akisi.md`.
 
 ## Final hatırlatması
 

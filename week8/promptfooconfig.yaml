@@ -24,6 +24,7 @@ prompts:
 defaultTest:
   options:
     # llm-rubric hakemi: OpenAI uyumlu herhangi bir endpoint (OPENAI_BASE_URL / OPENAI_API_KEY ortam değişkenleri)
+    # OpenRouter'da model adı önekli olmalı: openai:chat:openai/gpt-6-luna (Gemini'de: openai:chat:gemini-3.5-flash)
     provider: openai:chat:gpt-6-luna
   assert:
     - type: javascript

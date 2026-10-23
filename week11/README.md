@@ -12,7 +12,7 @@ Proje ödevinin tamamı tek belgede: [`proje/PROJE_ODEVI.md`](../proje/PROJE_ODE
 | 15 dk | Teslim şablonu + rubrik üzerinden geçiş; sorular |
 | 10 dk | Final konu haritası: hangi haftadan ne tür senaryo gelir |
 | 55 dk | **Atölye**: takımlar `kullanim_senaryosu.md` + eval planı + en küçük çalışan sürüm; hoca onayı |
-| 10 dk | Takvim: ara teslim (Hafta 12), prova (Hafta 13), sunum (Hafta 14), final sınavı |
+| 10 dk | Takvim: ara teslim + red team + prova (Hafta 12), sunum (Hafta 13), final sınavı (Hafta 14 tatil) |
 
 ## Klasördekiler
 
@@ -23,7 +23,7 @@ Proje ödevinin tamamı tek belgede: [`proje/PROJE_ODEVI.md`](../proje/PROJE_ODE
 | `son_kontrol_listesi.md` | Teslimden 1 gün önce 15 dakikalık kontrol |
 | `final_konu_haritasi.md` | Hafta 1-10 kavram/karar haritası + 10 örnek senaryo sorusu |
 | `proje_fikirleri.md` | 10 fikir: veri · mimari · eval · risk; seçim kuralları |
-| `sunum_gunu_akisi.md` | Hafta 14 akışı, akran değerlendirme |
+| `sunum_gunu_akisi.md` | Hafta 13 akışı, akran değerlendirme |
 
 ## Atölye kontrol noktaları (hoca masaya geldiğinde hazır olsun)
 
@@ -48,7 +48,7 @@ Proje ödevinin tamamı tek belgede: [`proje/PROJE_ODEVI.md`](../proje/PROJE_ODE
 | Soru | Cevap |
 |---|---|
 | Önceki dönemin sahte haber projesini yapabilir miyiz? | Evet; `proje_fikirleri.md` #4. Eval, maliyet, güvenlik, yönetişim olmadan tam puan yok |
-| Ücretli model gerekir mi? | Hayır. Gemini ücretsiz katman + hocanın Foundry endpoint'i + Ollama yeter; maliyeti **ölçmeniz** yeter, ödemeniz değil |
+| Ücretli model gerekir mi? | Hayır. Gemini ücretsiz katman + hocanın OpenRouter anahtarı + Ollama yeter; maliyeti **ölçmeniz** yeter, ödemeniz değil |
 | Tek kişi olabilir miyim? | Evet; kapsam küçülür, rubrik aynı |
 | Kodun ne kadarını ajan yazabilir? | Hepsini bile; ama README "AI kullanımı" dürüst olmalı ve siz her satırı açıklayabilmelisiniz (soru-cevapta sorulur) |
 | Verimiz kişisel veri içeriyor | Anonimleştirin (Faker ile sentetik), KVKK notunu yazın; gerçek TCKN/isim repoya girmez |

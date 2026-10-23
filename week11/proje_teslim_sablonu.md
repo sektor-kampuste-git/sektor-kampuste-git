@@ -30,7 +30,7 @@
 ## Değerlendirme sonuçları (zorunlu)
 - Eval seti: ___ vaka (zorlayıcı: ___), kaynak: ___, hakem: ___, tarih: ___ → geçen: ___/___
 - (RAG varsa) sadakat ___ · kaynak isabeti ___
-- Red team (≥8 saldırı; Hafta 13 eşleşmesi): ___/___ saldırı dayandı; eval setine eklenen vaka: ___; saldıran takım: ___
+- Red team (≥8 saldırı; Hafta 12 eşleşmesi): ___/___ saldırı dayandı; eval setine eklenen vaka: ___; saldıran takım: ___
 - **Ne bozuldu, nasıl düzelttiniz** (3-5 cümle; bu bölüm boşsa rubrikte dürüstlük puanı düşer):
 
 ## Maliyet

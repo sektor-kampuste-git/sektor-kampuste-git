@@ -7,7 +7,8 @@ Ne gösterir?
 
 Kullanım:
   python foundry_test.py                              # .env'deki LLM_MODEL ile tek çalıştırma
-  python foundry_test.py --model gpt-6-luna --model deepseek-v4.1-flash   # aynı endpoint'teki birden çok deployment
+  python foundry_test.py --model openai/gpt-6-luna --model deepseek/deepseek-v4.1-flash   # aynı endpoint'te iki model (OpenRouter)
+  python foundry_test.py --model gpt-6-luna --model deepseek-v4.1-flash   # Foundry'de deployment adlarıyla
   python foundry_test.py --ollama qwen3.5:4b          # yerel modeli de tabloya ekle
   python foundry_test.py --ekstra "https://generativelanguage.googleapis.com/v1beta/openai/|GEMINI_API_KEY|gemini-3.5-flash-lite"
 

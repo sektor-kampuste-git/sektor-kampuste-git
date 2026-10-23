@@ -14,10 +14,10 @@ python araclar/sahte_llm_sunucu.py &    # ikinci terminalde, yedek olarak açık
 - [ ] Anahtar hiçbir pencerede görünmüyor (`.env` kapalı, terminal geçmişinde `export` yok)
 - [ ] Haftanın duyurusu kanala atılmış ([`duyuru_metinleri.md`](duyuru_metinleri.md))
 
-## Hafta 4 — Foundry, maliyet, Container Apps
+## Hafta 4 — Model erişimi, maliyet, Container Apps
 
 ```bash
-python week4/foundry_test.py --model gpt-6-luna --model deepseek-v4.1-flash --ollama qwen3.5:4b
+python week4/foundry_test.py --model openai/gpt-6-luna --model deepseek/deepseek-v4.1-flash --ollama qwen3.5:4b
 ```
 Beklenen: model başına satır: `girdi` ~200 tok, `cikti` 40-120 tok, `sure_ms`, `maliyet_usd` (fiyat `fiyatlar.json`'da yoksa `null`); yerel model $0 ve en yavaş. `--json` ile aynı tablo JSON.
 ```bash
@@ -31,7 +31,8 @@ cd week4/ozetleyici && APP=ozet-hoca ./deploy_aca.sh      # dersten ÖNCE bir ke
 curl https://<app>.<bolge>.azurecontainerapps.io/saglik   # → {"durum": "ok", ...}
 az containerapp logs show -n ozet-hoca -g rg-ccai-week4 --follow
 ```
-- [ ] Foundry portalında Deployments listesi ve bir deployment'ın Metrics/Cost sayfası açık
+- [ ] openrouter.ai → Activity sayfası açık (öğrenci anahtarlarının harcaması); `python hoca/openrouter_anahtarlari.py listele` çalışıyor
+- [ ] İsteğe bağlı: ai.azure.com Foundry *Model catalog* sekmesi (karşılaştırma için)
 - [ ] Ders sonunda: `az group delete -n rg-ccai-week4 --yes --no-wait`
 
 ## Hafta 5 — RAG
@@ -77,7 +78,7 @@ python ajan_dongusu.py "TK-77 kargom nerede?" --mcp
 python a2a_mini.py                          # planlayıcı → uzman devri, iki ayrı bütçe
 ```
 - [ ] `ide_ayarlari/vscode_mcp.json` kopyası `.vscode/mcp.json`'da, python yolu sanal ortama; VS Code Copilot Agent modunda "SIP-1001 nerede?" dün denendi
-- [ ] Modelin araç çağırdığından emin olun (küçük yerel modeller çağırmaz → Foundry/Gemini)
+- [ ] Modelin araç çağırdığından emin olun (küçük yerel modeller çağırmaz → OpenRouter `openai/gpt-6-luna` / Gemini)
 
 ## Hafta 8 — Tracing, eval, güvenlik
 

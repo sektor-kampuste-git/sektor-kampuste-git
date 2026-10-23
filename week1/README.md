@@ -41,7 +41,7 @@ python week1/hello.py
 
 1. **Aynı Türkçe sözleşme maddesi, beş model (8 dk).** 400 kelimelik bir kira sözleşmesi maddesini Gemini Flash-Lite, DeepSeek V4-Flash, Claude Haiku 4.5, GPT-6 Luna ve yerel Qwen3.5 4B'ye gönderin; her biri için girdi/çıktı token, gecikme ve fatura. Bu depoda aynı tabloyu `week4/foundry_test.py` üretir:
    ```bash
-   python week4/foundry_test.py --model gpt-6-luna --model deepseek-v4.1-flash --ollama qwen3.5:4b
+   python week4/foundry_test.py --model openai/gpt-6-luna --model deepseek/deepseek-v4.1-flash --ollama qwen3.5:4b
    ```
    Sorular: Türkçe neden İngilizceden 1.5-2× fazla token harcıyor? En ucuz model en kötüsü mü? Metinde olmayan bir maddeyi hangisi uydurdu? Yerel model: $0.00 ama neden?
 2. **Her hafta açılacak iki konsol (4 dk).** ai.azure.com'da bir modeli 30 saniyede deploy edin (endpoint + anahtar); aistudio.google.com'da 30 saniyede ücretsiz Gemini anahtarı oluşturun. Aynı OpenAI uyumlu istemci ikisiyle de konuşur.
