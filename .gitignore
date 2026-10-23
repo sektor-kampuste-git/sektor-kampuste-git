@@ -34,3 +34,8 @@ rapor_*.json
 Thumbs.db
 .idea/
 .vscode/settings.json
+
+# Hafta 1-3 lab çıktıları
+results.csv
+failed.csv
+results-ts.csv

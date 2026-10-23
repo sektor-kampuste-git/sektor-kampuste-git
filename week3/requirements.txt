@@ -1,0 +1,4 @@
+openai>=1.100
+instructor>=1.10
+pydantic>=2.7
+python-dotenv>=1.0

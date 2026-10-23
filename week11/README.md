@@ -3,7 +3,7 @@
 > **Bu hafta demo yok; bu hafta sizin projeniz var.**
 > Ders saati atölye olarak işler: takımlar çalışır, hoca masa masa dolaşır, eval planları onaylanır.
 
-Hafta 10'daki sunumlarla takımlar ve fikirler kesinleşti. Bu hafta üç şey netleşir: **ne teslim edeceksiniz** (şablon), **nasıl puanlanacak** (rubrik), **finalde ne sorulur** (konu haritası). Ürünün en küçük çalışan sürümü bu hafta sonunda yayında olmalı; RAG/ajan/MCP katmanları sonraki haftalarda eklenir.
+Proje ödevinin tamamı tek belgede: [`proje/PROJE_ODEVI.md`](../proje/PROJE_ODEVI.md) (amaç, zorunlu bileşenler, teslim edilecekler, takvim, rubrik). Hafta 10'daki sunumlarla takımlar ve fikirler kesinleşti. Bu hafta üç şey netleşir: **ne teslim edeceksiniz** (şablon), **nasıl puanlanacak** (rubrik), **finalde ne sorulur** (konu haritası). Ürünün en küçük çalışan sürümü bu hafta sonunda yayında olmalı; RAG/ajan/MCP katmanları sonraki haftalarda eklenir.
 
 ## Ders akışı (90 dk)
 
@@ -19,7 +19,7 @@ Hafta 10'daki sunumlarla takımlar ve fikirler kesinleşti. Bu hafta üç şey n
 | Dosya | Ne işe yarar |
 |---|---|
 | `proje_teslim_sablonu.md` | `TESLIM.md` olarak repo köküne; takım, kanıt tablosu, eval sonuçları, maliyet, yönetişim, AI kullanımı |
-| `degerlendirme_rubrigi.md` | 100 puanlık rubrik (taslak; hoca onayıyla kesinleşir) |
+| `degerlendirme_rubrigi.md` | 100 puanlık rubrik (kesin; [`proje/PROJE_ODEVI.md`](../proje/PROJE_ODEVI.md) §6 ile aynı) |
 | `son_kontrol_listesi.md` | Teslimden 1 gün önce 15 dakikalık kontrol |
 | `final_konu_haritasi.md` | Hafta 1-10 kavram/karar haritası + 10 örnek senaryo sorusu |
 | `proje_fikirleri.md` | 10 fikir: veri · mimari · eval · risk; seçim kuralları |
@@ -33,7 +33,7 @@ Hafta 10'daki sunumlarla takımlar ve fikirler kesinleşti. Bu hafta üç şey n
 4. **Görev dağılımı** — kim ne yapıyor, commit'lerde görünecek
 5. **Riskler** — veri yoksa, model Türkçe'de zayıfsa, zaman kalmazsa plan B
 
-## Takvim (öneri; sınıf kanalındaki tarih geçerlidir)
+## Takvim (`PROJE_ODEVI.md` §5 ile aynı; sınıf kanalındaki tarih geçerlidir)
 
 | Hafta | Kilometre taşı |
 |---|---|
@@ -54,4 +54,4 @@ Hafta 10'daki sunumlarla takımlar ve fikirler kesinleşti. Bu hafta üç şey n
 | Verimiz kişisel veri içeriyor | Anonimleştirin (Faker ile sentetik), KVKK notunu yazın; gerçek TCKN/isim repoya girmez |
 
 ## Kaynaklar
-Önceki haftaların README'leri (her birinin "Başarı kriterleri" bölümü) · `week10/proje_readme_sablonu.md` · `week9/kullanim_senaryosu_sablonu.md` · `week8/ci/eval.yml`
+[`proje/PROJE_ODEVI.md`](../proje/PROJE_ODEVI.md) · önceki haftaların README'leri (her birinin "Başarı kriterleri" bölümü) · [`week10/proje_readme_sablonu.md`](../week10/proje_readme_sablonu.md) · [`week9/kullanim_senaryosu_sablonu.md`](../week9/kullanim_senaryosu_sablonu.md) · [`week8/ci/eval.yml`](../week8/ci/eval.yml)

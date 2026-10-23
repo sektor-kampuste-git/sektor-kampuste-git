@@ -1,0 +1,12 @@
+[
+  {"id": 1, "q": "Türkiye'nin başkenti neresidir? Tek kelimeyle cevap ver.", "keywords": ["Ankara"]},
+  {"id": 2, "q": "Bir haftada kaç gün vardır? Sadece sayı yaz.", "keywords": ["7", "yedi"]},
+  {"id": 3, "q": "Suyun kimyasal formülü nedir?", "keywords": ["H2O", "H₂O"]},
+  {"id": 4, "q": "İstiklal Marşı'nın yazarı kimdir?", "keywords": ["Mehmet Akif", "Ersoy"]},
+  {"id": 5, "q": "Kiracı kirayı her ayın en geç 5'inde ödemelidir. Kiracı 12'sinde öderse ne olur? Kısa cevap ver.", "keywords": ["geç", "gecik"]},
+  {"id": 6, "q": "Python'da bir listenin uzunluğunu veren fonksiyon hangisidir?", "keywords": ["len"]},
+  {"id": 7, "q": "Aşağıdaki cümlenin duygusu olumlu mu olumsuz mu? 'Kargo üç hafta gecikti ve ürün kırık geldi.' Tek kelime.", "keywords": ["olumsuz", "negatif"]},
+  {"id": 8, "q": "Bir dikdörtgenin kenarları 3 ve 4 cm ise alanı kaç cm²'dir? Sadece sayı.", "keywords": ["12"]},
+  {"id": 9, "q": "Bulut bilişimde 'IaaS' kısaltması neyin kısaltmasıdır?", "keywords": ["Infrastructure", "altyapı"]},
+  {"id": 10, "q": "KVKK hangi konuyu düzenler? Kısa cevap.", "keywords": ["kişisel veri", "Kişisel Veri"]}
+]

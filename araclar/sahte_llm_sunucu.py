@@ -67,7 +67,8 @@ def _ornek_deger(sema: dict[str, Any]) -> Any:
     if isinstance(tip, list):
         tip = [t for t in tip if t != "null"][0] if tip else "string"
     if tip == "object" or "properties" in sema:
-        return {k: _ornek_deger(v) for k, v in (sema.get("properties") or {}).items()}
+        return {k: _ornek_deger({**v, "_ad": k}) if isinstance(v, dict) else None
+                for k, v in (sema.get("properties") or {}).items()}
     if tip == "array":
         eleman = sema.get("items", {"type": "string"})
         return [_ornek_deger(eleman)]
@@ -78,14 +79,43 @@ def _ornek_deger(sema: dict[str, Any]) -> Any:
     if tip == "boolean":
         return True
     # string
+    if sema.get("format") in ("date", "date-time"):
+        return "2026-09-12" if sema.get("format") == "date" else "2026-09-12T10:00:00Z"
     aciklama = (sema.get("description") or "").lower()
     if "şehir" in aciklama or "sehir" in aciklama or "city" in aciklama:
         return "İstanbul"
-    if "tarih" in aciklama or "date" in aciklama:
-        return "2026-10-23"
+    ad = (sema.get("_ad") or "").lower()
+    if "tarih" in aciklama or "date" in aciklama or ad in ("date", "tarih"):
+        return "2026-09-12"
+    if ad in ("title", "baslik", "başlık"):
+        return "Örnek başlık"
     if "id" in aciklama or "numara" in aciklama or "no" == aciklama.strip():
         return "SIP-1001"
     return "örnek"
+
+
+def _mesajdan_sema(metin: str) -> dict[str, Any] | None:
+    """Prompt metnine gömülü bir JSON şeması ("properties" içeren nesne) varsa onu döndür."""
+    if not metin or '"properties"' not in metin:
+        return None
+    basla = metin.find("{")
+    while basla != -1:
+        derinlik = 0
+        for i in range(basla, len(metin)):
+            if metin[i] == "{":
+                derinlik += 1
+            elif metin[i] == "}":
+                derinlik -= 1
+                if derinlik == 0:
+                    try:
+                        aday = json.loads(metin[basla:i + 1])
+                    except json.JSONDecodeError:
+                        break
+                    if isinstance(aday, dict) and "properties" in aday:
+                        return aday
+                    break
+        basla = metin.find("{", basla + 1)
+    return None
 
 
 def _arac_sec(araclar: list[dict], kullanici_metni: str) -> dict:
@@ -176,7 +206,12 @@ async def chat(req: Request):
             sema = (rf.get("json_schema") or {}).get("schema") or {}
             icerik = json.dumps(_ornek_deger(sema) or {"cevap": "örnek"}, ensure_ascii=False)
         elif rf.get("type") == "json_object":
-            icerik = json.dumps({"cevap": _sahte_cevap(model, kullanici, sistem, arac_ciktilari)}, ensure_ascii=False)
+            # Instructor (Mode.JSON) şemayı sistem mesajına gömer; bulursak ona uy
+            sema = _mesajdan_sema(sistem) or _mesajdan_sema(kullanici)
+            if sema:
+                icerik = json.dumps(_ornek_deger(sema) or {"cevap": "örnek"}, ensure_ascii=False)
+            else:
+                icerik = json.dumps({"cevap": _sahte_cevap(model, kullanici, sistem, arac_ciktilari)}, ensure_ascii=False)
         else:
             icerik = _sahte_cevap(model, kullanici, sistem, arac_ciktilari)
         mesaj = {"role": "assistant", "content": icerik}

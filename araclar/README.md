@@ -22,4 +22,5 @@ EMBED_MODEL=sahte-embedding
 
 Desteklenenler: `chat.completions` (araç çağrısı, `response_format`, `stream`), `embeddings`, `models`.
 Yanıtlar kural tabanlıdır: araç tanımı görürse kullanıcı metnine en yakın aracı çağırır, JSON şeması
-görürse şemaya uygun örnek JSON döner, aksi halde "[SAHTE YANIT]" ile başlayan bir metin verir.
+görürse şemaya uygun örnek JSON döner (Instructor'ın `Mode.JSON`'u gibi şemayı sistem mesajına gömen
+istemciler dahil), aksi halde "[SAHTE YANIT]" ile başlayan bir metin verir.

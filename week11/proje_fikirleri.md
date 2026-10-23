@@ -1,6 +1,6 @@
 # 10 proje fikri (hepsi beş beceriyle uyumlu)
 
-Her fikir için: veri · model/mimari · eval fikri · risk notu. Kendi fikriniz de olur; `week9/kullanim_senaryosu_sablonu.md` ile başlayın.
+Her fikir için: veri · model/mimari · eval fikri · risk notu. Kendi fikriniz de olur; [`week9/kullanim_senaryosu_sablonu.md`](../week9/kullanim_senaryosu_sablonu.md) ile başlayın. Zorunlu bileşenler ve rubrik: [`proje/PROJE_ODEVI.md`](../proje/PROJE_ODEVI.md).
 
 | # | Fikir | Veri | Mimari | Eval | Risk / yönetişim |
 |---|---|---|---|---|---|

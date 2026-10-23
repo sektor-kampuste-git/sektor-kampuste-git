@@ -1,0 +1,6 @@
+openai>=1.50
+python-dotenv
+tiktoken
+transformers>=4.40
+# bonus only:
+# sentence-transformers

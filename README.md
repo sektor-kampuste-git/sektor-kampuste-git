@@ -8,9 +8,9 @@
 
 | Hafta | Konu | Lab | Klasör |
 |---|---|---|---|
-| 1 | 2026'da yapay zeka: manzara, ekonomi, araç çantası | Hesaplar + `hello.py` (bulut vs yerel model) | *derste paylaşıldı* |
-| 2 | LLM'ler nasıl çalışır: token, bağlam, dikkat, gömme | Türkçe vs İngilizce token, temperature, yerel model yarışı | *derste paylaşıldı* |
-| 3 | Prompt yazımı ve tip güvenli çıktılar; GitHub org'u | Instructor + Pydantic ile veri çıkarma; kendi reponuz | *derste paylaşıldı* |
+| 1 | 2026'da yapay zeka: manzara, ekonomi, araç çantası | Hesaplar + `hello.py` (bulut vs yerel model) | [`week1/`](week1/) |
+| 2 | LLM'ler nasıl çalışır: token, bağlam, dikkat, gömme | Türkçe vs İngilizce token, temperature, yerel model yarışı | [`week2/`](week2/) |
+| 3 | Prompt yazımı ve tip güvenli çıktılar; GitHub org'u | Instructor + Pydantic ile veri çıkarma; kendi reponuz | [`week3/`](week3/) |
 | 4 | **Yapay zeka için bulut: IaaS'tan hizmet olarak modele** | Foundry endpoint'i · maliyet tablosu · Azure Container Apps'e deploy | [`week4/`](week4/) |
 | 5 | **RAG ve vektör veritabanları** *(vize haftası)* | Türkçe derlem üzerinde hibrit RAG + RAGAS tarzı değerlendirme | [`week5/`](week5/) |
 | 6 | **Vibe coding I: ajan tabanlı kodlama araçları** | 40 dk: spec'ten testli uygulamaya ve yayına | [`week6/`](week6/) |
@@ -19,10 +19,11 @@
 | 9 | **İş yerinde yapay zeka: roller, ROI, yönetişim, hukuk** | Kullanım senaryosu özeti + Copilot Studio / n8n prototipi | [`week9/`](week9/) |
 | 10 | **Kariyer, portfolyo ve final sunumları** | Portfolyo rötuşu + 3 dakikalık sunumlar | [`week10/`](week10/) |
 | 11 | **Proje ve final hazırlığı** | Atölye: teslim şablonu, rubrik, konu haritası | [`week11/`](week11/) |
+| 12-15 | **Final projesi:** ara teslim · red team eşleşmesi + prova · sunumlar · final sınavı | Proje ödevi, takvim ve rubrik | [`proje/PROJE_ODEVI.md`](proje/PROJE_ODEVI.md) |
 
 Her klasörde bir `README.md` var: haftanın sorusu, demo adımları (hoca), lab adımları (öğrenci), başarı kriterleri, sık karşılaşılan sorunlar.
 
-**Notlandırma:** Proje %30 · Vize %30 (Hafta 5, 1-4. haftaları kapsar) · Final %40 (senaryo ağırlıklı).
+**Notlandırma:** Proje %30 ([`proje/PROJE_ODEVI.md`](proje/PROJE_ODEVI.md)) · Vize %30 (Hafta 5, 1-4. haftaları kapsar) · Final %40 (senaryo ağırlıklı; [`week11/final_konu_haritasi.md`](week11/final_konu_haritasi.md)).
 
 ## Kurulum (bir kez)
 
@@ -30,7 +31,7 @@ Her klasörde bir `README.md` var: haftanın sorusu, demo adımları (hoca), lab
 git clone https://github.com/sektor-kampuste-git/sektor-kampuste-git.git
 cd sektor-kampuste-git
 python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
-pip install -r week4/requirements.txt                  # her haftanın kendi requirements.txt'si var
+pip install -r week1/requirements.txt                  # her haftanın kendi requirements.txt'si var
 cp .env.example .env                                   # anahtarlarınızı .env'e yazın; .env asla commit'lenmez
 ```
 
@@ -38,7 +39,7 @@ Python 3.12+ önerilir. [uv](https://docs.astral.sh/uv/) kullananlar: `uv venv &
 
 ### Model erişimi: tek OpenAI uyumlu istemci, çok arka uç
 
-Tüm lab kodu üç ortam değişkeni okur: `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`. Aynı kod şunlarla çalışır:
+Tüm lab kodu üç ortam değişkeni okur: `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`. Hafta 1-3 betikleri de önce bu üçlüyü okur; derste gösterilen eski adlar (`GEMINI_API_KEY`, `BASE_URL` / `API_KEY` / `MODEL`) yalnızca bunlar boşsa devreye girer (`.env.example` §4). Aynı kod şunlarla çalışır:
 
 | Arka uç | Nereden | Ücret |
 |---|---|---|
@@ -51,14 +52,16 @@ Tüm lab kodu üç ortam değişkeni okur: `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_M
 Ayrıntı ve hazır bloklar: [`.env.example`](.env.example). Hafta 5 gömme modeli için `EMBED_MODEL` (Gemini: `gemini-embedding-001`, Ollama: `bge-m3`).
 
 ### Ücretsiz öğrenci kaynakları
-GitHub Student Developer Pack (Codespaces 180 saat/ay) · Azure for Students ($100, kart gerekmez) · Google AI Plus (TR öğrencilerine 1 yıl) · Zed Pro (1 yıl) · Copilot Free · Streamlit Community Cloud · Azure Container Apps ücretsiz katman. Doğrulanmış liste Hafta 1 notlarında.
+GitHub Student Developer Pack (Codespaces 180 saat/ay) · Azure for Students ($100, kart gerekmez) · Google AI Plus (TR öğrencilerine 1 yıl) · Zed Pro (1 yıl) · Copilot Free · Streamlit Community Cloud · Azure Container Apps ücretsiz katman. Doğrulanmış liste: [`week1/ogrenci_kaynaklari_2026.md`](week1/ogrenci_kaynaklari_2026.md).
 
 ## Depo düzeni
 
 ```
 .env.example        ← ortak ortam değişkenleri şablonu
 araclar/            ← sahte_llm_sunucu.py (çevrimdışı yedek ve test)
-week4/ … week11/    ← her hafta: README.md + demo/lab kodu + requirements.txt
+week1/ … week11/    ← her hafta: README.md + demo/lab kodu + requirements.txt
+proje/              ← final projesi ödevi (PROJE_ODEVI.md + PDF)
+hoca/               ← eğitmen paketi: hazırlık listesi, duyuru metinleri, ders öncesi kontrol (anahtar içermez)
 ```
 
 Her haftanın kodu **kendi başına çalışır** (haftalar arası import yok); bir klasörü kopyalayıp kendi projenize başlayabilirsiniz.

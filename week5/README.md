@@ -10,10 +10,13 @@ Hafta 1'deki başarısızlık listesinin ikinci maddesi: *"Yanlış veri: bayat 
 
 | Süre | Bölüm |
 |---|---|
-| 35 dk | Teori: gömme, parçalama, vektör DB'ler (Qdrant, pgvector, Azure AI Search), hibrit arama, RAG hattı, RAGAS metrikleri |
-| 15 dk | **Canlı demo** |
+| 30 dk | **Vize** (Hafta 1-4; senaryo soruları) |
+| 20 dk | Teori: gömme, parçalama, vektör DB'ler (Qdrant, pgvector, Azure AI Search), hibrit arama, RAG hattı, RAGAS metrikleri |
+| 10 dk | **Canlı demo** (kısaltılmış: gömme sezgisi + indeksle/sor + ölç) |
 | 20 dk | **Lab** |
-| 10 dk | Quiz + vize hatırlatması |
+| 10 dk | Quiz + gelecek hafta |
+
+Vize dersin başında yapılır; teori ve demo bu hafta sıkıştırılmıştır (aşağıdaki demo adımlarından 1, 3 ve 4 yeterlidir).
 
 ## Kavramlar (5 dakikada)
 
