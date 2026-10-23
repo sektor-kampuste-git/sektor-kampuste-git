@@ -6,16 +6,16 @@
 
 ## 0. Hemen (Hafta 4'ten önce, tek seferlik)
 
-- [ ] **Repoyu public yap:** GitHub → `sektor-kampuste-git/sektor-kampuste-git` → Settings → General → Danger Zone → *Change visibility* → Public. (Bu oturumdan yapılamadı; proxy repo ayarlarını engelliyor.)
-- [ ] **Dal kararı:** şu an tek dal `claude/modest-fermat-14wqlj` ve varsayılan dal bu. Öğrencilere verdiğiniz bütün bağlantılar `tree/<dal>` içerir; `main` oluşturup varsayılan yapmak isterseniz: Settings → Branches → *Default branch* (önce `git branch main && git push -u origin main`). Bu karar sizin; README'deki `git clone` komutu her iki durumda çalışır.
+- [ ] **Repoyu public yap ve `main`'i varsayılan dal yap (2 tıklama, bu oturumdan yapılamadı: repo ayarı yazma izni yok):** GitHub → `sektor-kampuste-git/sektor-kampuste-git` → Settings → General → *Default branch* → `main`; aynı sayfanın altında Danger Zone → *Change visibility* → Public. Geçmiş tarandı: anahtar, öğrenci verisi ve sınav içeriği yok.
+- [x] **`main` dalı açıldı** (`claude/modest-fermat-14wqlj` ile aynı içerik). Öğrenci bağlantıları ve slaytlar `tree/main/weekN` kullanır.
 - [ ] **Sınıf kanalına repo bağlantısı** ([`duyuru_metinleri.md`](duyuru_metinleri.md) §"Repo açıldı").
-- [ ] **LMS'e `proje/PROJE_ODEVI.pdf`** yükle; son teslim tarihini LMS'e ve kanala yaz.
-- [ ] **Foundry deployment'ları** (§1) ve **anahtar dağıtım planı** (§2).
+- [ ] **LMS'e `proje/PROJE_ODEVI.pdf`** yükle (ya da LMS'e repodaki dosyanın bağlantısını koy); son teslim tarihini LMS'e ve kanala yaz. LMS'e bu oturumdan erişim yok.
+- [ ] **OpenRouter** (§1): kredi yükle, gizlilik ayarı, yönetim anahtarı, `hoca/openrouter_anahtarlari.py olustur` ve **anahtar dağıtım planı** (§2).
 - [ ] **Kendi hesaplarınız** (§3): Google AI Studio anahtarı, Groq, OpenRouter (yedek sağlayıcılar), Langfuse, Streamlit Community Cloud, Azure aboneliği (Container Apps demosu), n8n (Docker), Copilot Studio tenant kontrolü.
 - [ ] **Microsoft Learn for Educators:** bölümü kaydettirin → AI-901 / AZ-900 sınav kuponları (Hafta 1 ve 10 slaytlarında söz ediliyor).
 - [ ] **Eğitim laptopu:** `ollama pull qwen3.5:4b`, `ollama pull bge-m3`, `ollama pull vngrs-ai/Kumru-2B`; `python -m venv .venv` + her haftanın `requirements.txt`; Node 18+ (`npx promptfoo`), Docker (n8n, Qdrant), Azure CLI (`az login`).
-- [ ] **Demo yedekleri yok:** slaytlar `build/demo-wN/` ekran görüntülerine ve kayıtlı çalıştırmalara gönderme yapıyor ama Drive'da yoklar (`HANDOFF.md`: "None are created yet"). Her hafta provada (`ders_oncesi_kontrol.md`) gerçek modelle aldığınız çıktıların ekran görüntüsünü bir klasöre koyun; sahte sunucu akışı kurtarır, sayıları kurtarmaz.
-- [ ] **Slayt lab sayfaları:** her TR deste lab slaytında `github.com/<course-org>/ccai-2026/tree/main/labs/weekNN` yazıyor; §5'teki tabloya göre repo yolu ve dosya adlarını düzeltin (deste başına 1-2 slayt).
+- [ ] **Demo yedekleri:** Drive'da `build/demo-wN/` kayıtları yok; düzeltilmiş slaytlardaki "Ağ çökerse" notları artık sahte sunucuya ve provada alacağınız ekran görüntülerine işaret ediyor. Her hafta provada (`ders_oncesi_kontrol.md`) gerçek modelle aldığınız çıktıların ekran görüntüsünü bir klasöre koyun.
+- [ ] **Düzeltilmiş TR desteleri Drive'a koy:** 10 deste bu oturumda düzeltildi (lab/demo/kod slaytları repoyla aynı, bağlantılar `tree/main/weekN`, model erişimi OpenRouter, sunum takvimi Hafta 13) ve size dosya olarak gönderildi; Drive'daki `TR/` klasöründekilerin yerine yükleyin (Drive eski sürümü saklar). §5 tablosu neyin değiştiğini gösterir.
 - [ ] **Drive'daki `sinavlar/`, `ogrenciler/`, `Değerlendirilecek_Projeler/` klasörleri repoya girmedi** ve girmemeli; `bulut-bilisim-yz-katilimcilar.csv` öğrenci verisidir.
 
 ## 1. Model erişimi: OpenRouter
@@ -129,11 +129,11 @@ Her satır: **önceki gün** hazırlık → **ders günü** ısıtma (komutlar `
 
 ## 5. Slaytlar ↔ repo farkları (lab slaytlarını düzeltirken)
 
-TR desteler (`Drive: 2026-Guz-Yeni-Seri/TR/Hafta-NN-*.pptx`) Eylül 2026 tasarımındaki `labs/weekNN` dosya adlarını kullanır; repo `weekN` klasörleri ve Türkçe dosya adlarıyla kuruldu. Hafta 1-3 kodları birebir alındı, 4-10 yeniden yazıldı. Her deste için lab slaytında düzeltilecekler:
+TR desteler (`Drive: 2026-Guz-Yeni-Seri/TR/Hafta-NN-*.pptx`) Eylül 2026 tasarımındaki `labs/weekNN` dosya adlarını kullanıyordu; düzeltilmiş destelerde lab, demo ve kod slaytları sağ sütuna göre yeniden yazıldı (kuram slaytlarına dokunulmadı). Tablo neyin neden değiştiğini kayıt için tutar; repo `weekN` klasörleri ve Türkçe dosya adlarıyla kuruldu. Hafta 1-3 kodları birebir alındı, 4-10 yeniden yazıldı. Her deste için lab slaytında düzeltilecekler:
 
 | Hafta | Slaytta | Repoda |
 |---|---|---|
-| Hepsi | `github.com/<course-org>/ccai-2026/tree/main/labs/weekNN` | `github.com/sektor-kampuste-git/sektor-kampuste-git/tree/<dal>/weekN` |
+| Hepsi | `github.com/<course-org>/ccai-2026/tree/main/labs/weekNN` | `github.com/sektor-kampuste-git/sektor-kampuste-git/tree/main/weekN` |
 | 1 | `labs/week01/hello.py`, `.env` içinde `GEMINI_API_KEY` | `week1/hello.py`; kök `.env`'de `LLM_API_KEY` (eski ad da çalışır) |
 | 2 | `labs/week02/{tokens,temperature,bakeoff,similarity}.py` | `week2/` aynı dosyalar |
 | 3 | `labs/week03/extract.py`, `BASE_URL/API_KEY/MODEL`, `demo.ipynb` | `week3/extract.py` (Pydantic `date` alanı çakışması düzeltildi), `LLM_*`; notebook yok, demo `extract.py` ile |
